@@ -1,0 +1,6 @@
+(assume a0 (and true (not true)))
+(step t1 (cl (not (= (and true (not true)) false)) (not (and true (not true))) false) :rule equiv_pos2)
+(step t2 (cl (= (and true (not true)) false)) :rule hole :args ((and true (not true)) 7 12))
+(step t3 (cl false) :rule resolution :premises (t1 t2 a0))
+(step t4 (cl (not false)) :rule false)
+(step t5 (cl) :rule resolution :premises (t3 t4))

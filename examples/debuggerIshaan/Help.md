@@ -21,13 +21,13 @@ cvc5's proof certificate (in the alethe proof certificate format),
 run it with the following command-line options (options to a program
 on the terminal usually start with `--` or `-`):
 ```
-cvc5 ex1.smt2 --dump-proofs --prof-format-mode=alethe
+cvc5 ex1.smt2 --dump-proofs --prof-format-mode=alethe --dag-thresh=0
 ```
 cvc5 will return `unsat` and then a proof of unsatisfiability of
 the formula (see below for the general structure of these proofs). 
 For various reasons, cvc5 returns an unnecessarily complicated proof
-for this formula. `ex1.pf` contains a much simpler proof that works 
-just as well.
+for this formula (the one that cvc5 returns is in `ex1cvc5.pf`). 
+`ex1.pf` contains a much simpler proof that works just as well.
 
 The proof (`.smt2` file) and proof certificate (`.pf` file) can be 
 checked against each other using a proof checker. SMTCoq provides a 
