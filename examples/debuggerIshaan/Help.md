@@ -75,7 +75,7 @@ Coq file that calls `Verit_Checker` will be called `foo.v` and
 the Coq file that debugs the checker will be called `foodebug.v`. So the
 Python debugger will generate `foodebug.v` given the string "foo"
 It will assume that `foo.smt2` and `foo.pf` exist in the same directory
-in which `foodebug.v will be created.
+in which `foodebug.v` will be created.
 
 The first few lines are common for all debug files (notice the empty 
 line, let's make sure that's in there as well for readability).
