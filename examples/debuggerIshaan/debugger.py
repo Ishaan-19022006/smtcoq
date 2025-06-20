@@ -1,6 +1,9 @@
 #Get first command line argument into a string variable
+import sys 
 
-#Use it to create names of SMT file, proof file, checker file, and the debug file
-
-#Create a debug file with the right name and start writing lines to it
-
+for i in sys.argv[1:]:
+        
+    open(i + ".smt2", "w")#creating smt2 file
+    open(i + ".pf", "w")#creating proof file
+    open(i + ".v", "w")#creating checker file
+    open(i + "debug.v", "w").write("This is the debug file for " + i)

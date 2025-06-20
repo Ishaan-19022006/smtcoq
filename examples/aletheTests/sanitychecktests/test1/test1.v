@@ -1,6 +1,6 @@
-Add Rec LoadPath "/home/arjun/Desktop/smtcoq/arjunvish-smtcoq-veritAst/smtcoq/src" as SMTCoq.
+Add Rec LoadPath "/Users/ishaankumar1902/Desktop/smtcoq/src" as SMTCoq.
 Require Import SMTCoq.SMTCoq.
 Require Import Bool.
 Section Benchmark.
-  Verit_Checker "/home/arjun/Desktop/smtcoq/arjunvish-smtcoq-veritAst/smtcoq/examples/aletheTests/sanitychecktests/test1/test1.smt2" "/home/arjun/Desktop/smtcoq/arjunvish-smtcoq-veritAst/smtcoq/examples/aletheTests/sanitychecktests/test1/test1.pf".
+  Verit_Checker "/Users/ishaankumar1902/Desktop/smtcoq/examples/aletheTests/sanitychecktests/test1/test1.smt2" "/Users/ishaankumar1902/Desktop/smtcoq/examples/aletheTests/sanitychecktests/test1/test1.pf".
 End Benchmark.
