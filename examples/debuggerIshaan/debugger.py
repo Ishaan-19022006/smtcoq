@@ -4,7 +4,7 @@ import os
 
 for i in sys.argv[1:]:
     base_name = os.path.basename(i)
-    open(base_name + "debug.v", "w").write(
+    open(i + "debug.v", "w").write(
         "Add Rec LoadPath \"/Users/ishaankumar1902/Desktop/smtcoq/examples/debuggerIshaan\" as SMTCoq. \n"
         "Require Import SMTCoq.SMTCoq.\n"
         "Require Import Bool. \n" 
