@@ -109,7 +109,7 @@ invokes the SMT and proof files:
 It's common for all debug files except for the two strings that take the 
 file names. For `foo` they will be `foo.smt2` and `foo.pf`.
 
-The next few lines are common across debug files, but the lines that
+The next few lines are common across debug files (with a few exceptions mentioned below), but the lines that
 follow them depend on their (Coq) output.
 ```
   Definition nclauses1 := Eval vm_compute in (match trace1 with Certif a _ _ => a end). (* Size of the state *)
@@ -122,6 +122,21 @@ follow them depend on their (Coq) output.
   (* Sanity check that atoms and formulas are well-typed. Must return true *)
   Eval vm_compute in (Form.check_form t_form1 && Atom.check_atom t_atom1 && Atom.wt t_i1 t_func1 t_atom1).
 ```
+
+Some of the Coq statements above give some output that we want
+to capture in a comment. These are shown below for the specific
+example of `ex1`:
+```
+  ...
+  Print c1. (* 2 *)
+  ...
+  Print conf1. (* 0 *)
+  Eval vm_compute in List.length (fst c1). (* No. of steps in certificate = 3 *)
+  ...
+  Eval vm_compute in (Form.check_form t_form1 && Atom.check_atom t_atom1 && Atom.wt t_i1 t_func1 t_atom1). (* Check passes *)
+```
+The comments that are added above depend on the output of the
+Coq commands that precede them.
 
 These are all Coq commands that can be run on Coqide to see their output. 
 The rest of the debug file depends on some of the outputs. So our script
