@@ -3,8 +3,9 @@
 # and prints all files in the current directory (ls) using subprocess.
 import subprocess
 
-subprocess.Popen("pwd")
+#subprocess.Popen("pwd")
 #subprocess.Popen(['cd', 'examples/debuggerIshaan'], shell=True)
-subprocess.Popen("ls", cwd='examples/debuggerIshaan')
-
-
+#subprocess.Popen("ls", cwd='examples/debuggerIshaan')
+#subprocess.run(['ls', '-l'])
+subprocess.run(['coqc', 'test.v'])
+subprocess.run(['cd', 'ex1'], shell=True)
