@@ -5,7 +5,6 @@ import subprocess
 
 i = sys.argv[1]
 base_name = os.path.basename(i)
-#partial_name = base_name + "debug.v"
 full_name = i + "debug.v"
 open(full_name, "w").write(
     "Add Rec LoadPath \"../../src\" as SMTCoq.\n"
