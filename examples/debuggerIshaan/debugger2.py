@@ -5,7 +5,7 @@ import subprocess
 
 i = sys.argv[1]
 base_name = os.path.basename(i)
-full_name = i + "debug.v"
+full_name = i + "wrongdebug.v"
 open(full_name, "w").write(
     "Add Rec LoadPath \"../../src\" as SMTCoq.\n"
     "Require Import SMTCoq.SMTCoq.\n"
@@ -17,7 +17,7 @@ open(full_name, "w").write(
         "\n"
         " " + "Parse_certif_verit t_i1 t_func1 t_atom1 t_form1 root1 used_roots1 trace1 \n"
         " \"" + i + ".smt2\" \n"
-        " \"" + i + ".pf\". \n"
+        " \"" + i + "wrong.pf\". \n"
         "\n"
         " " + "Definition nclauses1 := Eval vm_compute in (match trace1 with Certif a _ _ => a end). (* Size of the state *)\n"
         " " + "Print nclauses1.\n"
@@ -26,9 +26,24 @@ open(full_name, "w").write(
     "End " + base_name + "debug. \n"
     )
 coqc = subprocess.run(['coqc', full_name], text=True, capture_output=True)
-print("Extracting output")
 coqcop = coqc.stdout
 print(coqcop)
+
+def parse(output):
+    csplit = str.split(output)
+    for line in range(0,len(csplit)):
+        need = csplit[2] 
+        for ch in range(0,len(need)):
+            if need[ch]=="%":
+                print("(* " + need[0:ch] + " *)")
+                break
+        break
+
+parse(coqcop)
+                  
+    
+
+
 '''
 1. Parse from:
 nclauses1 = 2%int63
