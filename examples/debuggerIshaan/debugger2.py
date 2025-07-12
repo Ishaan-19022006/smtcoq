@@ -3,10 +3,26 @@ import sys
 import os
 import subprocess
 
+def parse(output):
+
+    csplit = str.split(output)
+    for line in range(0,len(csplit)):
+        need = csplit[2] 
+        for ch in range(0,len(need)):
+            if need[ch]=="%":
+                return ("(* " + need[0:ch] + " *)")
+
+def run_coq():
+        coqc = subprocess.run(['coqc', full_name], text=True, capture_output=True)
+        coqcop = coqc.stdout
+        pop = parse(coqcop)
+        return pop
+
 i = sys.argv[1]
 base_name = os.path.basename(i)
 full_name = i + "debug.v"
-open(full_name, "w").write(
+with open(full_name, "r+") as f :
+    f.write(
     "Add Rec LoadPath \"../../src\" as SMTCoq.\n"
     "Require Import SMTCoq.SMTCoq.\n"
     "Require Import Bool. \n" 
@@ -21,25 +37,27 @@ open(full_name, "w").write(
         "\n"
         " " + "Definition nclauses1 := Eval vm_compute in (match trace1 with Certif a _ _ => a end). (* Size of the state *)\n"
         " " + "Print nclauses1.\n"
-        
-    
     "End " + base_name + "debug. \n"
     )
-coqc = subprocess.run(['coqc', full_name], text=True, capture_output=True)
-coqcop = coqc.stdout
+    
+    
+    f.seek(0)
+    lines  = f.readlines()
 
-
-def parse(output):
-    csplit = str.split(output)
-    for line in range(0,len(csplit)):
-        need = csplit[2] 
-        for ch in range(0,len(need)):
-            if need[ch]=="%":
-                print("(* " + need[0:ch] + " *)")
+    for line in range (0, len(lines)):
+        run_coq()
+        for l in range(12, len(lines)):
+            if lines[l].startswith(" " + "Print nclauses1.") == True:
+                pop = run_coq()
+                lines[l] = lines[l].replace((" " + "Print nclauses1."), (" " + "(* Print nclauses1. *)\n"))
+                lines.insert(l+1, " " + pop + "\n")
+                f.seek(0)
+                f.writelines(lines)
                 break
-        break
+        
 
-parse(coqcop)
+
+
                   
     
 
