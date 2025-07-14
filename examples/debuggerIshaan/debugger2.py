@@ -6,17 +6,23 @@ import subprocess
 def parse(output):
 
     csplit = str.split(output)
-    for line in range(0,len(csplit)):
-        need = csplit[2] 
-        for ch in range(0,len(need)):
-            if need[ch]=="%":
-                return ("(* " + need[0:ch] + " *)")
+    
+
+    for line in range(len(csplit)): 
+
+        if "%" in csplit[line]:
+            ch = csplit[line].index("%")
+            csplit[line] = csplit[line][0:ch]
+            print ("(*", csplit[line], "*)")
+        
+                    
+
 
 def run_coq():
-        coqc = subprocess.run(['coqc', full_name], text=True, capture_output=True)
-        coqcop = coqc.stdout
-        pop = parse(coqcop)
-        return pop
+    coqc = subprocess.run(['coqc', full_name], text=True, capture_output=True)
+    coqcop = coqc.stdout
+    pop = parse(coqcop)
+    return pop
 
 i = sys.argv[1]
 base_name = os.path.basename(i)
@@ -37,23 +43,33 @@ with open(full_name, "r+") as f :
         "\n"
         " " + "Definition nclauses1 := Eval vm_compute in (match trace1 with Certif a _ _ => a end). (* Size of the state *)\n"
         " " + "Print nclauses1.\n"
+        " " + "Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n"
+        " " + "Print conf1.\n"
     "End " + base_name + "debug. \n"
     )
-    
-    
-    f.seek(0)
-    lines  = f.readlines()
 
-    for line in range (0, len(lines)):
-        run_coq()
-        for l in range(12, len(lines)):
-            if lines[l].startswith(" " + "Print nclauses1.") == True:
-                pop = run_coq()
-                lines[l] = lines[l].replace((" " + "Print nclauses1."), (" " + "(* Print nclauses1. *)\n"))
-                lines.insert(l+1, " " + pop + "\n")
-                f.seek(0)
-                f.writelines(lines)
-                break
+    print(run_coq())
+
+    def replace():
+        f.seek(0)
+        lines  = f.readlines()
+
+        for line in range (0, len(lines)):
+            run_coq()
+            for l in range(12, len(lines)):
+                if lines[l].startswith(" " + "Print nclauses1.") == True:
+                    pop1 = run_coq()
+                    lines[l] = lines[l].replace((" " + "Print nclauses1."), (" " + "(* Print nclauses1. *)\n"))
+                    lines.insert(l+1, " " + pop1 + "\n")
+                    
+                if lines[l].startswith(" " + "Print conf1.") == True:
+                    pop2 = run_coq()
+                    lines[l] = lines[l].replace((" " + "Print conf1."), (" " + "(* Print conf1. *)\n"))
+                    lines.insert(l+1, " " + pop2 + "\n")
+                    
+            f.seek(0)
+            f.writelines(lines)
+    #replace()
         
 
 

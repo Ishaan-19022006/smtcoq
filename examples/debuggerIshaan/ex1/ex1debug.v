@@ -11,9 +11,8 @@ Section ex1debug.
  "ex1/ex1.pf". 
 
  Definition nclauses1 := Eval vm_compute in (match trace1 with Certif a _ _ => a end). (* Size of the state *)
- (* Print nclauses1. *)
-
- (* 2 *)
+ Print nclauses1.
+ Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)
+ Print conf1.
 End ex1debug. 
-
 
