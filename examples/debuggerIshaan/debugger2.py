@@ -3,31 +3,93 @@ import sys
 import os
 import subprocess
 
-def parse(output):
+'''
+Takes a string - the Coq output
+Returns the string parsed into a Coq comment
 
-    csplit = str.split(output)
-    
+Ex: takes
+nclauses1 = 2%int63
+     : int
 
-    for line in range(len(csplit)): 
+Returns 
+(* 2 *)
+'''
+def parse_coq_op(coq_op):
+    coq_op_lines = str.split(coq_op)
+    lines_2 = coq_op_lines[2]
+    i_percent = lines_2.index("%")
+    num = lines_2[0:i_percent]
+    coq_comment = "(* " + num + " *)"
+    return coq_comment
 
-        if "%" in csplit[line]:
-            ch = csplit[line].index("%")
-            csplit[line] = csplit[line][0:ch]
-            print ("(*", csplit[line], "*)")
-        
-                    
 
-
-def run_coq():
-    coqc = subprocess.run(['coqc', full_name], text=True, capture_output=True)
+'''
+Takes a string - the Coq debug file name
+Runs coqc on the debug file and returns the output after parsing
+    Calls parse() to parse output
+'''
+def run_coq(fname):
+    coqc = subprocess.run(['coqc', fname], text=True, capture_output=True)
     coqcop = coqc.stdout
-    pop = parse(coqcop)
-    return pop
+    return parse_coq_op(coqcop)
 
+
+'''
+    Takes 
+    1. a file object pointing to the debug file
+    2. an integer - the index of the line to replace
+    3. the commented Coq output of the line
+    And
+    1. Comments the line
+    2. Adds a comment with the Coq output
+
+    Ex: takes index of line that contains
+     Print nclauses1.
+    and the Coq output
+    (* 2 *)
+    and replaces the line with 
+    (*  Print nclauses1. *) (* 2 *)
+    Note: for every call, replace copies all lines into a list of string, modifies it, and writes it back
+    This might be ineffecient
+    TODO: potential site for optimization
+    '''
+def replace_coql(f, i, coq_op):
+    #Get lines from file
+    f.seek(0)
+    lines = f.readlines()
+
+    #Modify line
+    lines[i] = "(* " + lines[i].rstrip() + " *) " + coq_op + "\n"
+
+    #Write lines back to file
+    f.seek(0)
+    f.writelines(lines)
+
+#Takes file object and returns number of lines in file
+def file_length(f):
+    f.seek(0)
+    return len(f.readlines())
+
+
+'''
+Code to:
+1. Create debug file
+2. Open and write initial debug code
+3. Write initial debug that needs coqc to be run
+4. Write iterative debug code that goes through the SMTCoq state while running coqc
+5. Close file
+'''
+
+#Steps 1. and 2.
 i = sys.argv[1]
 base_name = os.path.basename(i)
 full_name = i + "debug.v"
-with open(full_name, "r+") as f :
+
+#Make sure file is empty
+with open(full_name, "w") as f:
+    f.close()
+
+with open(full_name, "r+") as f:
     f.write(
     "Add Rec LoadPath \"../../src\" as SMTCoq.\n"
     "Require Import SMTCoq.SMTCoq.\n"
@@ -43,40 +105,33 @@ with open(full_name, "r+") as f :
         "\n"
         " " + "Definition nclauses1 := Eval vm_compute in (match trace1 with Certif a _ _ => a end). (* Size of the state *)\n"
         " " + "Print nclauses1.\n"
-        " " + "Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n"
-        " " + "Print conf1.\n"
-    "End " + base_name + "debug. \n"
+    "End " + base_name + "debug."
     )
 
-    print(run_coq())
+    #print(run_coq(full_name))
 
-    def replace():
-        f.seek(0)
-        lines  = f.readlines()
+    #Step 3.
+    #TODO: Make this a function
+    i = file_length(f) - 2
+    coq_op = run_coq(full_name)
+    replace_coql(f, i, coq_op)
 
-        for line in range (0, len(lines)):
-            run_coq()
-            for l in range(12, len(lines)):
-                if lines[l].startswith(" " + "Print nclauses1.") == True:
-                    pop1 = run_coq()
-                    lines[l] = lines[l].replace((" " + "Print nclauses1."), (" " + "(* Print nclauses1. *)\n"))
-                    lines.insert(l+1, " " + pop1 + "\n")
-                    
-                if lines[l].startswith(" " + "Print conf1.") == True:
-                    pop2 = run_coq()
-                    lines[l] = lines[l].replace((" " + "Print conf1."), (" " + "(* Print conf1. *)\n"))
-                    lines.insert(l+1, " " + pop2 + "\n")
-                    
-            f.seek(0)
-            f.writelines(lines)
-    #replace()
-        
+    #Move cursor to beginning of last line
+    #move_cursor_last(f)
 
+    #TODO: Make this a function
+    #Note: reading all lines, modifying and then writing all lines. Alternately, we can move the file pointer and then write
+    #TODO: potential site for optimization
+    f.seek(0)
+    lines = f.readlines()
+    next_line = "\n " + "Definition c1 := Eval vm_compute in (match trace1 with Certif _ a _ => a end). (* Certificate *)\n" + "Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf1.\n"
+    lines.insert(file_length(f) - 1, next_line)
+    f.seek(0)
+    f.writelines(lines)
 
-
-                  
-    
-
+    i = file_length(f) - 2
+    coq_op = run_coq(full_name)
+    replace_coql(f, i, coq_op)
 
 '''
 1. Parse from:
@@ -98,6 +153,6 @@ Most likely, you'll have to use write with r+ mode to do this
 '''
 3. Then add these lines and repeat the above process:
 " Definition c1 := Eval vm_compute in (match trace1 with Certif _ a _ => a end). (* Certificate *)\n"
-        " Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n"
-        " Print conf1.\n"
+" Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n"
+" Print conf1.\n"
 '''
