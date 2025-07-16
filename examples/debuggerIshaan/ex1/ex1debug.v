@@ -14,6 +14,8 @@ Section ex1debug.
 (*  Print nclauses1. *) (* 2 *)
 
  Definition c1 := Eval vm_compute in (match trace1 with Certif _ a _ => a end). (* Certificate *)
-Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)
+ Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)
 (*  Print conf1. *) (* 0 *)
+
+(* Eval vm_compute in List.length (fst c1). (* No. of steps in certificate *) *) (* 3 *)
 End ex1debug.

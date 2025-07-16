@@ -14,19 +14,21 @@ nclauses1 = 2%int63
 Returns 
 (* 2 *)
 '''
+# Takes the list of strings from coq output, finds the word which has "%" in it, and returns the output as a Coq comment 
 def parse_coq_op(coq_op):
     coq_op_lines = str.split(coq_op)
-    lines_2 = coq_op_lines[2]
-    i_percent = lines_2.index("%")
-    num = lines_2[0:i_percent]
-    coq_comment = "(* " + num + " *)"
-    return coq_comment
+    for word in coq_op_lines:
+        if '%' in word:
+            i_percent = word.index('%')
+            num = word[0:i_percent]
+            coq_comment = "(* " + num + " *)"
+            return coq_comment
 
 
 '''
 Takes a string - the Coq debug file name
 Runs coqc on the debug file and returns the output after parsing
-    Calls parse() to parse output
+    Calls parse_coq_op() to parse output
 '''
 def run_coq(fname):
     coqc = subprocess.run(['coqc', fname], text=True, capture_output=True)
@@ -112,9 +114,12 @@ with open(full_name, "r+") as f:
 
     #Step 3.
     #TODO: Make this a function
-    i = file_length(f) - 2
-    coq_op = run_coq(full_name)
-    replace_coql(f, i, coq_op)
+    def initial_debug(f):
+        i = file_length(f) - 2
+        coq_op = run_coq(full_name)
+        replace_coql(f, i, coq_op)
+    
+    initial_debug(f)
 
     #Move cursor to beginning of last line
     #move_cursor_last(f)
@@ -122,16 +127,20 @@ with open(full_name, "r+") as f:
     #TODO: Make this a function
     #Note: reading all lines, modifying and then writing all lines. Alternately, we can move the file pointer and then write
     #TODO: potential site for optimization
-    f.seek(0)
-    lines = f.readlines()
-    next_line = "\n " + "Definition c1 := Eval vm_compute in (match trace1 with Certif _ a _ => a end). (* Certificate *)\n" + "Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf1.\n"
-    lines.insert(file_length(f) - 1, next_line)
-    f.seek(0)
-    f.writelines(lines)
+    def add_line(f, next_line):
+        f.seek(0)
+        lines = f.readlines()
+        lines.insert(file_length(f) - 1, next_line)
+        f.seek(0)
+        f.writelines(lines)
 
-    i = file_length(f) - 2
-    coq_op = run_coq(full_name)
-    replace_coql(f, i, coq_op)
+    add_line(f, "\n " + "Definition c1 := Eval vm_compute in (match trace1 with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf1.\n")
+    
+    initial_debug(f)
+
+    add_line(f, "\n" + "Eval vm_compute in List.length (fst c1). (* No. of steps in certificate *) \n" )
+
+    initial_debug(f)
 
 '''
 1. Parse from:
@@ -155,4 +164,9 @@ Most likely, you'll have to use write with r+ mode to do this
 " Definition c1 := Eval vm_compute in (match trace1 with Certif _ a _ => a end). (* Certificate *)\n"
 " Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n"
 " Print conf1.\n"
+
+4.Eval vm_compute in List.length (fst c1). (* No. of steps in certificate *)
+ = 3%nat
+ : nat
+ (* 3 *)
 '''
