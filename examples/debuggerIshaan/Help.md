@@ -179,9 +179,9 @@ s0 =
  |}, 0%int63 :: nil, 2%int63)
      : PArray.Map.t C.t * C.t * int
 ```
-This is manually parsed into the comment:
+This is parsed into the comment:
 ```
-(* s0_1 = {| [4] |} *)
+(* s0 = {| [4] |} *)
 ```
 The important part of this output is everything to the right of
 `PArray.Map.this :=` until the first `;`:
@@ -194,7 +194,7 @@ says that `s0` contains an *array* of lists - a data structure that
 contains a list at element `0`, one at element `1`, etc.
 The above array has only a 0th element - `0%int63` indicates index
 `0` of the array and `(4%int63 :: nil)` indicates the list element 
-at this index. This is just a special way of representing lists.
+at this index. This is a special way of representing lists.
 First of all, all `%int63` should be ignored while parsing.
 Coq represents a list `[x; y; z]` as `(x :: y :: z :: nil)`.
 We will represent lists inside `[]` and separate the elements
@@ -219,7 +219,7 @@ The output from Coq for this command is:
 ImmBuildProj (t_i:=t_i) t_func t_atom t_form 1 0 0
      : step (t_i:=t_i) t_func t_atom t_form
 ```
-The comment at the beginning of the block is built from
+The comment at the beginning of the next block is built from
 this output:
 ```
   (* 1. ImmBuildProj 1 0 0 *)
@@ -266,8 +266,8 @@ running this step of the certificate:
 ```
 This is followed by a command that tells us what the next step is.
 
-## Proofs Certficates
-The details of the proof certificates themselves doesn't matter that much - you need to write a debugger given some particular pattern of files. 
+## Proof Certficates
+The details of the proof certificates themselves doesn't matter too much - you need to write a debugger given some particular pattern of files. 
 This pattern is 
 mostly described above. It's okay if you don't understand what the file
 is doing as long as you understand what the pattern is and are able to
