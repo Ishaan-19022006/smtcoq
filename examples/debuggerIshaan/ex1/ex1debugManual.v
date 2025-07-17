@@ -10,12 +10,12 @@ Section ex1debug.
   "ex1/ex1.pf".
   
   Definition nclauses := Eval vm_compute in (match trace with Certif a _ _ => a end). (* Size of the state *)
-  Print nclauses.
+  Print nclauses. (* 2*) 
   Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)
   Print c.
   Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)
-  Print conf.
-  Eval vm_compute in List.length (fst c). (* No. of steps in certificate *)
+  Print conf. (* 0 *)
+  Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) (* 3 *)
   (* Sanity check that atoms and formulas are well-typed. Must return true *)
   Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom). (* true *)
 
