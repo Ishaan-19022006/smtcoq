@@ -24,12 +24,32 @@ def parse_coq_op(coq_op):
             coq_comment = "(* " + num + " *)"
             return coq_comment
 
+#Parse function for boolean output
+'''
+Ex : Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom).
+  = true 
+  : bool 
+ (* true *)
+ '''
+def parse_bool_op(coq_op):
+    coq_op_lines = str.split(coq_op)
+    for word in coq_op_lines:
+        if word == 'true' or word == 'false':
+            coq_comment = "(* " + word + " *)"
+            return coq_comment
+            
+
 
 '''
 Takes a string - the Coq debug file name
 Runs coqc on the debug file and returns the output after parsing
     Calls parse_coq_op() to parse output
 '''
+def bool_run_coq(fname):
+    coqc = subprocess.run(['coqc', fname], text=True, capture_output=True)
+    coqcop = coqc.stdout
+    return parse_bool_op(coqcop)
+
 def run_coq(fname):
     coqc = subprocess.run(['coqc', fname], text=True, capture_output=True)
     coqcop = coqc.stdout
@@ -101,12 +121,12 @@ with open(full_name, "r+") as f:
     "\n"
     "Section " + base_name + "debug. \n" 
         "\n"
-        " " + "Parse_certif_verit t_i1 t_func1 t_atom1 t_form1 root1 used_roots1 trace1 \n"
+        " " + "Parse_certif_verit t_i t_func t_atom t_form root used_roots trace \n"
         " \"" + i + ".smt2\" \n"
         " \"" + i + ".pf\". \n"
         "\n"
-        " " + "Definition nclauses1 := Eval vm_compute in (match trace1 with Certif a _ _ => a end). (* Size of the state *)\n"
-        " " + "Print nclauses1.\n"
+        " " + "Definition nclauses := Eval vm_compute in (match trace with Certif a _ _ => a end). (* Size of the state *)\n"
+        " " + "Print nclauses.\n"
     "End " + base_name + "debug."
     )
 
@@ -117,6 +137,11 @@ with open(full_name, "r+") as f:
     def initial_debug(f):
         i = file_length(f) - 2
         coq_op = run_coq(full_name)
+        replace_coql(f, i, coq_op)
+
+    def bool_initial_debug(f):
+        i = file_length(f) - 2
+        coq_op = bool_run_coq(full_name)
         replace_coql(f, i, coq_op)
     
     initial_debug(f)
@@ -134,13 +159,25 @@ with open(full_name, "r+") as f:
         f.seek(0)
         f.writelines(lines)
 
-    add_line(f, "\n " + "Definition c1 := Eval vm_compute in (match trace1 with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf1 := Eval vm_compute in (match trace1 with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf1.\n")
+    add_line(f, "\n " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n")
     
     initial_debug(f)
 
-    add_line(f, "\n" + "Eval vm_compute in List.length (fst c1). (* No. of steps in certificate *) \n" )
+    add_line(f, "\n" + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n" )
 
     initial_debug(f)
+
+    add_line(f, "\n" + "Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom). \n")
+
+    bool_initial_debug(f)
+
+    add_line(f, "\n" + "(* States from c *) \n" + "\n" + "(* Start state *) \n")
+
+    add_line(f, "\n" + "Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). \n" + " " + " Print s0. \n")
+
+    
+
+
 
 '''
 1. Parse from:
