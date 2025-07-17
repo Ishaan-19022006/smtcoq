@@ -37,8 +37,13 @@ def parse_bool_op(coq_op):
         if word == 'true' or word == 'false':
             coq_comment = "(* " + word + " *)"
             return coq_comment
-            
-
+'''
+This function will parse outputs for the states of the debug file 
+Ex : Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots).
+  Print s0.
+  (* s0 = {| [4] |} *)
+'''
+#def parse_state_op(coq_op):
 
 '''
 Takes a string - the Coq debug file name
@@ -159,21 +164,21 @@ with open(full_name, "r+") as f:
         f.seek(0)
         f.writelines(lines)
 
-    add_line(f, "\n " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n")
+    add_line(f, "\n " + " " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n")
     
     initial_debug(f)
 
-    add_line(f, "\n" + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n" )
+    add_line(f, "\n" + " " + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n" )
 
     initial_debug(f)
 
-    add_line(f, "\n" + "Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom). \n")
+    add_line(f, "\n" + " " +"Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom). \n")
 
     bool_initial_debug(f)
 
-    add_line(f, "\n" + "(* States from c *) \n" + "\n" + "(* Start state *) \n")
+    add_line(f, "\n" + " " + "(* States from c *) \n" + "\n" + "(* Start state *) \n")
 
-    add_line(f, "\n" + "Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). \n" + " " + " Print s0. \n")
+    add_line(f, "\n" + " " + "Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). \n" + " " + " Print s0. \n")
 
     
 

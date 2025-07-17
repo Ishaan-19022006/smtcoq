@@ -13,18 +13,18 @@ Section ex1debug.
  Definition nclauses := Eval vm_compute in (match trace with Certif a _ _ => a end). (* Size of the state *)
 (*  Print nclauses. *) (* 2 *)
 
- Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)
+  Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)
  Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)
 (*  Print conf. *) (* 0 *)
 
-(* Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) *) (* 3 *)
+(*  Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) *) (* 3 *)
 
-(* Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom). *) (* true *)
+(*  Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom). *) (* true *)
 
-(* States from c *) 
+ (* States from c *) 
 
 (* Start state *) 
 
-Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). 
+ Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). 
   Print s0. 
 End ex1debug.
