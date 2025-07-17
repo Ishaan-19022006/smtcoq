@@ -99,8 +99,28 @@ s0 =
 into:
   (* s0 = {| [4] |} *)
 '''
-#def parse_state_op(coq_op):
+def parse_state_op(coq_op):
+    '''
+    - Get rid of everything 
+    1. before the first occurrence of "0%int63"
+    2. after the first occurrence of ";""
+    '''
+    temp_1 = coq_op.split("(PArray.Map.Raw.Leaf C.t)", 1)
+    temp_2 = temp_1[1].split(";", 1)
+    coq_op_stripped = temp_2[0]
+    '''
+    - Define parse_coq_list that will take a Coq list
+    and return a simplified version of it
+    Ex: Takes 
+    (4%int63 :: 5%int63 :: nil)
+    returns
+    [4; 5]
 
+- Pick out the list from the remaining string and 
+pass it to parse_coq_list
+
+- Do the above for every list in the array
+'''
 
 def replace_coql(f, i, coq_op):
     #Get lines from file
@@ -171,9 +191,6 @@ with open(full_name, "r+") as f:
         replace_coql(f, i, coq_op)
     
     run_coq_command(f, Type.INT)
-
-    #Move cursor to beginning of last line
-    #move_cursor_last(f)
 
     '''
     Takes 1. file object 2. string
