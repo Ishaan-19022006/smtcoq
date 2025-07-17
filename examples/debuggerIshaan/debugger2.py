@@ -8,6 +8,25 @@ from enum import Enum
 class Type(Enum):
     BOOL = 1
     INT = 2
+'''
+Takes a string that contains a Coq integer
+Returns a string just the integer
+Ex: takes "0%int63", returns "0"
+'''
+def parse_coq_int(coq_op):
+    l = coq_op.split("%", 1)
+    return l[0]
+
+'''
+Takes a string that contains a Coq list
+Returns a string with a simplified form of the list
+Ex: takes 
+(4%int63 :: 0%int63 :: 17%int63 :: nil)
+returns
+[4; 0; 17]
+'''
+#def parse_coq_list(coq_op):
+#TODO: Make sure you use parse_coq_int
 
 '''
 Takes a string - the Coq output
@@ -21,6 +40,7 @@ Returns
 (* 2 *)
 '''
 # Takes the list of strings from coq output, finds the word which has "%" in it, and returns the output as a Coq comment 
+#TODO: Simplify this by using parse_coq_int
 def parse_coq_int_op(coq_op):
     coq_op_lines = str.split(coq_op)
     for word in coq_op_lines:
@@ -44,42 +64,6 @@ def parse_coq_bool_op(coq_op):
         if word == 'true' or word == 'false':
             coq_comment = "(* " + word + " *)"
             return coq_comment
-
-
-'''
-Takes 1. a string - the Coq debug file name
-      2. an instance of the Type enum
-Runs coqc on the debug file and returns the output after parsing
-    Calls parse_coq_op() to parse output
-'''
-def run_coqc(fname, t):
-    coqc = subprocess.run(['coqc', fname], text=True, capture_output=True)
-    coqcop = coqc.stdout
-    if (t == Type.BOOL):
-        return parse_coq_bool_op(coqcop)
-    elif(t == Type.INT):
-        return parse_coq_int_op(coqcop)
-
-
-'''
-    Takes 
-    1. a file object pointing to the debug file
-    2. an integer - the index of the line to replace
-    3. the commented Coq output of the line
-    And
-    1. Comments the line
-    2. Adds a comment with the Coq output
-
-    Ex: takes index of line that contains
-     Print nclauses1.
-    and the Coq output
-    (* 2 *)
-    and replaces the line with 
-    (*  Print nclauses1. *) (* 2 *)
-    Note: for every call, replace copies all lines into a list of string, modifies it, and writes it back
-    This might be ineffecient
-    TODO: potential site for optimization
-    '''
 
 
 '''
@@ -116,11 +100,48 @@ def parse_state_op(coq_op):
     returns
     [4; 5]
 
-- Pick out the list from the remaining string and 
-pass it to parse_coq_list
+    - Pick out the list from the remaining string and 
+    pass it to parse_coq_list
 
-- Do the above for every list in the array
+    - Do the above for every list in the array
 '''
+
+
+'''
+Takes 1. a string - the Coq debug file name
+      2. an instance of the Type enum
+Runs coqc on the debug file and returns the output after parsing
+    Calls parse_coq_op() to parse output
+'''
+def run_coqc(fname, t):
+    coqc = subprocess.run(['coqc', fname], text=True, capture_output=True)
+    coqcop = coqc.stdout
+    if (t == Type.BOOL):
+        return parse_coq_bool_op(coqcop)
+    elif(t == Type.INT):
+        return parse_coq_int_op(coqcop)
+
+
+'''
+    Takes 
+    1. a file object pointing to the debug file
+    2. an integer - the index of the line to replace
+    3. the commented Coq output of the line
+    And
+    1. Comments the line
+    2. Adds a comment with the Coq output
+
+    Ex: takes index of line that contains
+     Print nclauses1.
+    and the Coq output
+    (* 2 *)
+    and replaces the line with 
+    (*  Print nclauses1. *) (* 2 *)
+    Note: for every call, replace copies all lines into a list of string, modifies it, and writes it back
+    This might be ineffecient
+    TODO: potential site for optimization
+'''
+
 
 def replace_coql(f, i, coq_op):
     #Get lines from file

@@ -34,3 +34,22 @@ s_lst = s2.split("(PArray.Map.Raw.Leaf C.t)", 1)
 new_str = s_lst[1]
 final = new_str.split(";", 1)
 print(final[0])
+
+'''
+Ideally, we can convert this:
+0%int63
+       (4%int63 :: nil)
+       (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 1%int63
+          (0%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z
+
+to:
+0%int63 (4%int63 :: nil) 1%int63 (0%int63 :: nil)
+
+to
+{| [4], [0] |}
+'''
+def parse_coq_int(coq_op):
+    l = coq_op.split("%", 1)
+    return l[0]
+
+print(parse_coq_int("0%int63"))
