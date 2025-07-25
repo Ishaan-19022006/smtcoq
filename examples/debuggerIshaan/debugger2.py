@@ -157,6 +157,9 @@ def parse_state_op(coq_op):
     coq_op_stripped = temp_2[0]
     
 
+    parse_list_output = parse_list(coq_op_stripped) # gets output from one list 
+    coq_list = parse_coq_list_op(parse_list_output) 
+    return var + " = " + coq_list + "\n"
 
     '''
     - Define parse_coq_list that will take a Coq list

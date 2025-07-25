@@ -52,4 +52,13 @@ def parse_coq_int(coq_op):
     l = coq_op.split("%", 1)
     return l[0]
 
-print(parse_coq_int("0%int63"))
+#print(parse_coq_int("0%int63"))
+
+def parse_coq_int(coq_op):
+    
+    after_equal = coq_op.split(' = ')[1]
+    between = after_equal.split(' : ')[0]  
+    num = between.strip()  
+    print(" this is " , num)
+
+parse_coq_int("nclauses1 = 2%int63 : int")
