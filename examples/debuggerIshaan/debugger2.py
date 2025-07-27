@@ -105,6 +105,36 @@ def list_to_parse(coq_op):
 
 '''
 
+
+Takes the string 
+= ImmBuildProj (t_i:=t_i) t_func t_atom t_form 1
+         0 0
+     : step (t_i:=t_i) t_func t_atom t_form
+
+returns ImmBuildProj 1 0 0
+
+
+'''
+
+
+def parse_Eval(coq_op):
+    
+    split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+    first_word = split[0].replace("=", "").strip()
+    second_word = split[1].split(":")[0]
+
+    final_word = (first_word + second_word).replace("\n", "")
+    word = final_word.split()
+    final_list = ""
+
+    for w in word:
+      final_list += w + " "
+
+    return(final_list)
+
+
+'''
+
 Parse function for Coq boolean output
 Ex : Takes
   = true 
