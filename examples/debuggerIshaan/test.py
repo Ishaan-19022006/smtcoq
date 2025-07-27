@@ -12,7 +12,7 @@ s = """s0 =
 s_lst = s.split("(PArray.Map.Raw.Leaf C.t)", 1)
 new_str = s_lst[1]
 final = new_str.split(";", 1)
-print(final[0])
+#print(final[0])
 
 s2 = """
 s1 = 
@@ -33,7 +33,7 @@ s1 =
 s_lst = s2.split("(PArray.Map.Raw.Leaf C.t)", 1)
 new_str = s_lst[1]
 final = new_str.split(";", 1)
-print(final[0])
+#print(final[0])
 
 '''
 Ideally, we can convert this:
@@ -48,11 +48,10 @@ to:
 to
 {| [4], [0] |}
 '''
-def parse_coq_int(coq_op):
+def parse_int(coq_op):
     l = coq_op.split("%", 1)
     return l[0]
 
-#print(parse_coq_int("0%int63"))
 
 def parse_coq_int(coq_op):
     
@@ -61,4 +60,36 @@ def parse_coq_int(coq_op):
     num = between.strip()  
     print(" this is " , num)
 
-parse_coq_int("nclauses1 = 2%int63 : int")
+#parse_coq_int("nclauses1 = 2%int63 : int")
+
+def parse_multiple_list(state_output):
+    new_state = state_output.split("::")
+    int_list =  ""
+    for item in new_state[:-1]:  
+        int_list += parse_int(item) + ";"
+
+    return "[" + int_list[:-1] + "]"
+
+'''
+
+TODO: Function that takes 0%int63
+       (4%int63 :: nil)
+       (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 1%int63
+          (0%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z
+          
+returns 0%int63 (4%int63 :: nil) 1%int63 (0%int63 :: nil)
+
+'''
+
+s4= """0%int63
+       (4%int63 :: nil)
+       (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 1%int63
+          (0%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z"""
+
+def list_to_parse(coq_op):
+    for word in coq_op.split():
+        if word.endswith("%int63"):
+            print(word.strip())
+
+list_to_parse(s4)
+

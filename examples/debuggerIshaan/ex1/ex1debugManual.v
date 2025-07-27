@@ -31,7 +31,7 @@ Section ex1debug.
   (* 1. ImmBuildProj 1 0 0 *)
   Definition s1 := Eval vm_compute in (step_checker s0 (List.nth 0 (fst c) (CTrue t_func t_atom t_form 0))).
   Print s1.
-  (* s1_1 = {| [4], [0] |} *)
+  (* s1 = {| [4], [0] |} *)
   Eval vm_compute in List.nth 1 (fst c) _.
 
   (* 2. ImmBuildProj 0 0 1 *)

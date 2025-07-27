@@ -20,7 +20,7 @@ Ex: takes "0%int63", returns "0"
 
 def parse_int(coq_op):
     l = coq_op.rsplit("%", 1)
-    num = l[0].strip().strip('()') #removes whitespace and parentheses for application in Coq lists
+    num = l[0]
     return num
     
 
@@ -29,19 +29,20 @@ def parse_int(coq_op):
 Takes a string that contains a Coq list
 Returns a string with a simplified form of the list
 Ex: takes 
-(4%int63 :: 0%int63 :: 17%int63 :: nil)
-returns
-['4', '0', '17']
+(4%int63 :: 0%int63 :: 17%int63 :: nil) IMPORTANT : THIS IS ONE LIST WITH MULTIPLE ELEMNETS IN IT 
+
+returns [4 ; 0 ; 17] 
 
 '''
 
 
-def parse_list(state_output):
+def parse_multiple_list(state_output):
     new_state = state_output.split("::")
-    int_list = []
+    int_list =  ""
     for item in new_state[:-1]:  
-        int_list.append(parse_int(item))
-    return int_list
+        int_list += parse_int(item) + ";"
+
+    return "[" + int_list[:-1] + "]"
 
 
 '''
@@ -89,13 +90,16 @@ def parse_coq_int_op(coq_op):
 
 '''
 
-Takes a list of Coq integers from parse_list() and returns them as a Coq list 
-Ex: Takes ['4', '0', '17']
-returns {| [4], [0], [17] |}  
+TODO: Function that takes 0%int63
+       (4%int63 :: nil)
+       (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 1%int63
+          (0%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z
+          
+returns 0%int63 (4%int63 :: nil) 1%int63 (0%int63 :: nil)
 
 '''
 
-def parse_coq_list_op(coq_op):
+def list_to_parse(coq_op):
     return "{| [" + "], [".join(coq_op) + "] |}"
 
 
@@ -135,7 +139,7 @@ s0 =
  |}, 0%int63 :: nil, 2%int63)
      : PArray.Map.t C.t * C.t * int
 into:
-  (* s0 = {| [4] |} *)
+  (* s0 = {| [4] |} *).   (4%int63 :: 4%int63 :: nil)
 
 '''
 
@@ -157,9 +161,9 @@ def parse_state_op(coq_op):
     coq_op_stripped = temp_2[0]
     
 
-    parse_list_output = parse_list(coq_op_stripped) # gets output from one list 
-    coq_list = parse_coq_list_op(parse_list_output) 
-    return var + " = " + coq_list + "\n"
+    
+   
+    #return var + " = " + coq_list + "\n"
 
     '''
     - Define parse_coq_list that will take a Coq list
