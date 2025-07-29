@@ -28,19 +28,16 @@ def parse_int(coq_op):
 
 Takes a string that contains a Coq list
 Returns a string with a simplified form of the list
-Ex: takes 
+Ex: 
+1. single element list; takes 
 (4%int63 :: nil)
-
-or 
-
-(4%int63 :: 0%int63 :: 17%int63 :: nil) IMPORTANT : THIS IS ONE LIST WITH MULTIPLE ELEMNETS IN IT 
-
 returns [4]
-
-or 
-
+2. multiple element list; takes
+(4%int63 :: 0%int63 :: 17%int63 :: nil)
 returns [4 ; 0 ; 17] 
-
+3. empty list; takes
+nil
+returns []
 '''
 
 
