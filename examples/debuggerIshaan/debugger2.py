@@ -122,7 +122,7 @@ returns ImmBuildProj 1 0 0
 '''
 
 
-def parse_Eval(coq_op):
+def parse_Step(coq_op):
     
     split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
     first_word = split[0].replace("=", "").strip()
