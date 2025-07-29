@@ -29,14 +29,22 @@ def parse_int(coq_op):
 Takes a string that contains a Coq list
 Returns a string with a simplified form of the list
 Ex: takes 
+(4%int63 :: nil)
+
+or 
+
 (4%int63 :: 0%int63 :: 17%int63 :: nil) IMPORTANT : THIS IS ONE LIST WITH MULTIPLE ELEMNETS IN IT 
+
+returns [4]
+
+or 
 
 returns [4 ; 0 ; 17] 
 
 '''
 
 
-def parse_multiple_list(state_output):
+def parse_list(state_output):
     new_state = state_output.split("::")
     int_list =  ""
     for item in new_state[:-1]:  
@@ -130,7 +138,7 @@ def parse_Eval(coq_op):
     for w in word:
       final_list += w + " "
 
-    return(final_list)
+    return final_list
 
 
 '''
