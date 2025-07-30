@@ -72,7 +72,6 @@ def find_list_trim(s):
     start = s.find("(")
     end = s.find(")") + 1
     l = s[start:end]
-    print(l)
     l_op = parse_list(l)
     new_s = s[end:]
     return [l_op, new_s]
