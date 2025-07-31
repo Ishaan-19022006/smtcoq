@@ -3,6 +3,7 @@ import sys
 import os
 import subprocess
 from enum import Enum
+import re
 
 #Enum type to distinguish Coq Bools and Coq Ints
 class Type(Enum):
@@ -100,12 +101,23 @@ TODO: Function that takes 0%int63
        (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 1%int63
           (0%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z
           
-returns 0%int63 (4%int63 :: nil) 1%int63 (0%int63 :: nil)
+returns [4], [0]
 
 '''
 
 def list_to_parse(coq_op):
-    return "{| [" + "], [".join(coq_op) + "] |}"
+    coq_op = coq_op.strip()
+    
+    matches = re.findall(r"(\d+%int63)\s*(\([^()]*? :: nil\))", coq_op)
+    result = []
+    final_result = ""
+    for match in matches:
+        result.append(match[1])
+    final =  result
+    for word in final:
+            final_result += parse_list(word) + ","
+
+    return final_result[:-1]
 
 
 '''
@@ -174,7 +186,7 @@ s0 =
  |}, 0%int63 :: nil, 2%int63)
      : PArray.Map.t C.t * C.t * int
 into:
-  (* s0 = {| [4] |} *).   (4%int63 :: 4%int63 :: nil)
+  (* s0 = {| [4] |} *).   
 
 '''
 
@@ -194,25 +206,12 @@ def parse_state_op(coq_op):
     temp_1 = coq_op.split("(PArray.Map.Raw.Leaf C.t)", 1)
     temp_2 = temp_1[1].split(";", 1)
     coq_op_stripped = temp_2[0]
-    
+    final_parse = list_to_parse(coq_op_stripped)
+
+    return "(* " + var + " = " + "{| " + final_parse + " |} *)\n"
 
     
-   
-    #return var + " = " + coq_list + "\n"
 
-    '''
-    - Define parse_coq_list that will take a Coq list
-    and return a simplified version of it
-    Ex: Takes 
-    (4%int63 :: 5%int63 :: nil)
-    returns
-    [4; 5]
-
-    - Pick out the list from the remaining string and 
-    pass it to parse_coq_list
-
-    - Do the above for every list in the array
-'''
 
 
 '''

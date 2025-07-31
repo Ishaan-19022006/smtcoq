@@ -13,7 +13,7 @@ Ex: takes "0%int63", returns "0"
 
 def parse_int(coq_op):
     l = coq_op.rsplit("%", 1)
-    num = l[0]
+    num = l[0].strip().strip("()")
     return num
     
 
@@ -103,3 +103,11 @@ def parse_array(trimmed_op):
     res += "|}"
     return res
 
+#print(parse_array(s))
+
+s4_1 = """0%int63
+          (8%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z)
+       1%int63 (14%int63 :: nil)
+       (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 2%int63
+          (21%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z) """
+print(parse_array(s4_1))

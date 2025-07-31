@@ -1,3 +1,5 @@
+import re 
+
 s = """s0 = 
 ({|
    PArray.Map.this :=
@@ -50,7 +52,7 @@ to
 '''
 def parse_int(coq_op):
     l = coq_op.split("%", 1)
-    return l[0]
+    return l[0].strip().strip("()")
 
 
 def parse_coq_int(coq_op):
@@ -81,7 +83,7 @@ TODO: Function that takes 0%int63
              (7%int63 :: 13%int63 :: 16%int63 :: nil)
              (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z) 3%Z
           
-returns 0%int63 (8%int63 :: nil) 1%int63 (14%int63 :: nil) 2%int63 (21%int63 :: nil) 3%int63 (7%int63 :: 13%int63 :: 16%int63 :: nil)
+returns  [8],[14],[21],[7;13;16]
 
 '''
 
@@ -101,23 +103,37 @@ s4_1 = """0%int63
           (21%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z) """
 
 def list_to_parse(coq_op):
-    coq_list = coq_op.split()
-    word = 0
+    coq_op = coq_op.strip()
     
-    while word < len(coq_list):
-        print(coq_list[word], word)
-        
-        
-        if word % 4 != 0: # does not work since every interval is not divisible by 4 
-          word += 1
-        else:
-            word += 3
-        
-        
+    matches = re.findall(r'(\d+%int63)\s*(\([^()]*? :: nil\))', coq_op)
+
+    result = []
+    final_result = ""
+    for match in matches:
+        result.append(match[1])
+    final =  result
+    for word in final:
+            final_result += parse_multiple_list(word) + ","
+
+    return final_result[:-1]
+
+#print(list_to_parse(s4) )
 
 
-list_to_parse(s4_1)  # print first 4 indexes , skip 3 indexes after 4, print 4 indexes, repeat until len ends 
-#print index 0,1,2,3 skip 4,5,6 print index 7,8,9,10 repeat until end of len
+    #r = raw string, used in regex so that we are not finding patterns on strings which are automatically spaced out or tabbed out by python
+    #first group (\d+%int63) will match any number of digits followed by %int63
+   # \d:  digit(0-9)
+   # \d+: will match one more digits together, allowing us to find numbers which are more than one digit long 
+   # %int63: string literal in this context
+   # \s*: any whitespace, including spaces and tabs ( * means zero or more times, incase there is no space)
+    
+   # second group (\([^()]*? :: nil\)) will match a Coq list, which is of the form (x%int63 :: nil)
+   # \( and /): literal parenthesis for the coq list
+   # [] : charcter set, this is where we specify what characters we want to match
+   # ^() : match anything that is not a parenthesis, so we can match more elements in the list
+   # *? : this is the key component and allows us to match list with more than one element
+   # * : zero or more matches, if there are zero matches, moves onto ? , otherwise matches as many digits as possible
+   # ? : makes this character set optional, so if there are no elements after the first coq integer it will move onto :: nil
 
 
 '''
@@ -154,3 +170,25 @@ s6 = """= ImmBuildProj (t_i:=t_i) t_func t_atom t_form 0
      : step (t_i:=t_i) t_func t_atom t_form"""
 
 #print(parse_Eval(s6))
+
+
+def parse_state_op(coq_op):
+    '''
+    - Get rid of everything 
+    1. before the first occurrence of "0%int63"
+    2. after the first occurrence of ";""
+    '''
+
+    #getting the variable name 
+    var_split = coq_op.rsplit(" = ", 1)
+    var = var_split[0].strip()
+
+    #getting the parsed element
+    temp_1 = coq_op.split("(PArray.Map.Raw.Leaf C.t)", 1)
+    temp_2 = temp_1[1].split(";", 1)
+    coq_op_stripped = temp_2[0]
+    final_parse = list_to_parse(coq_op_stripped)
+
+    return "(* " + var + " = " + "{| " + final_parse + " |} *)\n"
+
+print(parse_state_op(s2))
