@@ -77,16 +77,15 @@ def parse_int(coq_op):
     l = coq_op.split("%", 1)
     return l[0].strip().strip("()")
 
-coq_int = """nclauses1 = 2%int63
-     : int"""
+
 def parse_coq_int(coq_op):
     
     after_equal = coq_op.split(' = ')[1]
     between = after_equal.split(' : ')[0]  
     num = between.strip()  
-    print(num)
+    return num
 
-parse_coq_int(coq_int)
+
 
 def parse_multiple_list(state_output):
     new_state = state_output.split("::")
@@ -126,15 +125,23 @@ s4_1 = """0%int63
        (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 2%int63
           (21%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z) """
 
+s10 = """0%int63 nil
+       (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 1%int63
+          (0%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z)"""
+
 def list_to_parse(coq_op):
     coq_op = coq_op.strip()
     
-    matches = re.findall(r'(\([^()]*? :: nil\))', coq_op)
-
+    
+    matches = re.findall(r'(\([^()]*? :: nil\))|(?:(nil))', coq_op)
+    
     result = []
     final_result = ""
     for match in matches:
-        result.append(match)
+      for m in match:
+          if m:
+            result.append(m)
+          
         
     
     for word in result:
@@ -142,7 +149,9 @@ def list_to_parse(coq_op):
 
     return final_result[:-1]
 
-#print(list_to_parse(s4) )
+print(list_to_parse(s10) )
+
+
 
 
     #r = raw string, used in regex so that we are not finding patterns on strings which are automatically spaced out or tabbed out by python
@@ -156,6 +165,9 @@ def list_to_parse(coq_op):
    # * : zero or more matches, if there are zero matches, moves onto ? , otherwise matches as many digits as possible
    # ? : makes this character set optional, so if there are no elements after the first coq integer it will move onto :: nil
 
+   # | : this is the OR keyword, so that we match either a coq list or the word nil
+   # ?: : this will ensure that nil is not captured in the result even though we are trying to get it as a match
+   # (nil) : this is the string literal nil which we want to match 
 
 '''
 Takes the string 

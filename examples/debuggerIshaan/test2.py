@@ -87,11 +87,35 @@ def parse_Res(coq_op):
     while match < len(matches):
         result.append(matches[match])
         
-        match += 2.  
+        match += 2 
     
     for word in result:
             final_result += parse_int(word) + ","
 
     return "(* " + var + " " + firstnum + " " + "{|" + (final_result[:-1]) + "|} *)"
     
-print(parse_Res(s))
+def parse_Step(coq_op):
+    
+    if coq_op.startswith("= ImmBuildProj"):
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+        first_word = split[0].replace("=", "").strip()
+        second_word = split[1].split(":")[0]
+
+        final_word = (first_word + second_word).replace("\n", "")
+        word = final_word.split()
+        final_list = ""
+
+        for w in word:
+            final_list += w + " "
+
+        return final_list
+    else:
+        op = parse_Res(coq_op)
+        return op
+
+
+op_1 = """= ImmBuildProj (t_i:=t_i) t_func t_atom t_form 1
+         0 0
+     : step (t_i:=t_i) t_func t_atom t_form"""
+
+print(parse_Step(s))

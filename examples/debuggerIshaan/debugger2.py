@@ -23,7 +23,7 @@ Ex: takes "0%int63", returns "0"
 
 def parse_int(coq_op):
     l = coq_op.rsplit("%", 1)
-    num = l[0]
+    num = l[0].strip().strip("()")
     return num
     
 
@@ -110,12 +110,16 @@ returns [4], [0]
 def list_to_parse(coq_op):
     coq_op = coq_op.strip()
     
-    matches = re.findall(r'(\([^()]*? :: nil\))', coq_op)
-
+    
+    matches = re.findall(r'(\([^()]*? :: nil\))|(?:(nil))', coq_op)
+    
     result = []
     final_result = ""
     for match in matches:
-        result.append(match)
+      for m in match:
+          if m:
+            result.append(m)
+          
         
     
     for word in result:
@@ -140,18 +144,22 @@ returns ImmBuildProj 1 0 0
 
 def parse_Step(coq_op):
     
-    split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
-    first_word = split[0].replace("=", "").strip()
-    second_word = split[1].split(":")[0]
+    if "ImmBuildProj" in coq_op.split():
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+        first_word = split[0].replace("=", "").strip()
+        second_word = split[1].split(":")[0]
 
-    final_word = (first_word + second_word).replace("\n", "")
-    word = final_word.split()
-    final_list = ""
+        final_word = (first_word + second_word).replace("\n", "")
+        word = final_word.split()
+        final_list = ""
 
-    for w in word:
-      final_list += w + " "
+        for w in word:
+            final_list += w + " "
 
-    return final_list
+        return "(* " + final_list + " *)"
+    else:
+        op = parse_Res(coq_op)
+        return op
 
 
 '''
@@ -199,7 +207,7 @@ def parse_Res(coq_op):
     while match < len(matches):
         result.append(matches[match])
         
-        match += 2.  
+        match += 2
     
     for word in result:
             final_result += parse_int(word) + ","
@@ -264,7 +272,7 @@ def parse_state_op(coq_op):
     coq_op_stripped = temp_2[0]
     final_parse = list_to_parse(coq_op_stripped)
 
-    return "(* " + var + " = " + "{| " + final_parse + " |} *)\n"
+    return "(* " + var + " = " + "{| " + final_parse + " |} *)"
 
     
 
@@ -283,6 +291,7 @@ Runs coqc on the debug file and returns the output after parsing
 def run_coqc(fname, t):
     coqc = subprocess.run(['coqc', fname], text=True, capture_output=True)
     coqcop = coqc.stdout
+
     if (t == Type.BOOL):
         return parse_coq_bool_op(coqcop)
     elif(t == Type.INT):
@@ -422,5 +431,29 @@ with open(full_name, "r+") as f:
     add_line(f, "\n" + " " + "(* States from c *) \n" + "\n" + "(* Start state *) \n")
 
     add_line(f, "\n" + " " + "Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). \n" + " " + " Print s0. \n")
+
+    run_coq_command(f, Type.STATE)
+
+    add_line(f, "\n" + " " +  "Eval vm_compute in List.nth 0 (fst c) _.\n")
+
+    run_coq_command(f, Type.STEP)
+
+    add_line(f, "\n" + " " + "Definition s1 := Eval vm_compute in (step_checker s0 (List.nth 0 (fst c) (CTrue t_func t_atom t_form 0))). \n" + " " + "Print s1. \n")
+    
+    run_coq_command(f, Type.STATE)
+
+    add_line(f, "\n" + " " +  "Eval vm_compute in List.nth 1 (fst c) _.\n")
+
+    run_coq_command(f, Type.STEP)
+
+    add_line(f, "\n" + " " + "Definition s2 := Eval vm_compute in (step_checker s1 (List.nth 1 (fst c) (CTrue t_func t_atom t_form 0))).\n" + " " + "Print s2. \n")
+
+    run_coq_command(f, Type.STATE)
+
+    add_line(f, "\n" + " " + "Eval vm_compute in List.nth 2 (fst c) _.\n")
+
+    run_coq_command(f, Type.STEP)
+
+    add_line(f, "\n" + " " + "Definition s3 := Eval vm_compute in (step_checker s2 (List.nth 2 (fst c) (CTrue t_func t_atom t_form 0))).\n" + " " + "Print s3. \n")
 
     run_coq_command(f, Type.STATE)
