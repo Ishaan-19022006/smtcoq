@@ -7,8 +7,10 @@ import re
 
 #Enum type to distinguish Coq Bools and Coq Ints
 class Type(Enum):
-    BOOL = 1
-    INT = 2
+    BOOL = 1. # Coq Bool
+    INT = 2. # Coq Int
+    STATE = 3. # Coq State
+    STEP = 4. # Coq Step
 
 
 '''
@@ -66,8 +68,8 @@ Returns
 
 def parse_coq_int(coq_op):
     
-    after_equal = coq_op.split('=')[1]  
-    between = after_equal.split(':')[0]  
+    after_equal = coq_op.split(' = ')[1]
+    between = after_equal.split(' : ')[0]  
     num = between.strip()  
     return num
 
@@ -96,7 +98,7 @@ def parse_coq_int_op(coq_op):
 
 '''
 
-TODO: Function that takes 0%int63
+Takes 0%int63
        (4%int63 :: nil)
        (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 1%int63
           (0%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z
@@ -114,9 +116,9 @@ def list_to_parse(coq_op):
     final_result = ""
     for match in matches:
         result.append(match)
-        print(match)
-    final =  result
-    for word in final:
+        
+    
+    for word in result:
             final_result += parse_list(word) + ","
 
     return final_result[:-1]
@@ -151,6 +153,58 @@ def parse_Step(coq_op):
 
     return final_list
 
+
+'''
+Takes the String
+
+= Res (t_i:=t_i) t_func t_atom t_form 0
+         ({|
+            PArray.Map.this :=
+              PArray.Map.Raw.Node
+                (PArray.Map.Raw.Leaf int) 0%int63
+                1%int63
+                (PArray.Map.Raw.Node
+                   (PArray.Map.Raw.Leaf int) 1%int63
+                   0%int63 (PArray.Map.Raw.Leaf int)
+                   1%Z) 2%Z;
+            PArray.Map.is_bst :=
+              PArray.Map.Raw.Proofs.add_bst 1%int63
+                0%int63
+                (PArray.Map.Raw.Proofs.add_bst 0%int63
+                   1%int63
+                   (PArray.Map.Raw.Proofs.empty_bst
+                      int))
+          |}, 0%int63, 2%int63)
+     : step (t_i:=t_i) t_func t_atom t_form
+
+returns Res 0 {| 1, 0 |}
+
+'''
+
+def parse_Res(coq_op):
+    coq_list = coq_op.split()
+    var  = coq_list[1] #Variable Res
+    firstnum = coq_list[6] #First number after Res 
+    
+
+    s_lst = coq_op.split("(PArray.Map.Raw.Leaf int)", 1)
+    new_str = s_lst[1]
+    final = new_str.split(";", 1) 
+    words = final[0]
+    
+    matches = re.findall(r'(\d+%int63)', words)
+    match = 1
+    result = []
+    final_result = ""
+    while match < len(matches):
+        result.append(matches[match])
+        
+        match += 2.  
+    
+    for word in result:
+            final_result += parse_int(word) + ","
+
+    return "(* " + var + " " + firstnum + " " + "{|" + (final_result[:-1]) + "|} *)"
 
 '''
 
@@ -233,6 +287,10 @@ def run_coqc(fname, t):
         return parse_coq_bool_op(coqcop)
     elif(t == Type.INT):
         return parse_coq_int_op(coqcop)
+    elif(t == Type.STATE):
+        return parse_state_op(coqcop)
+    elif(t == Type.STEP):
+        return parse_Step(coqcop)
 
 
 '''
@@ -365,3 +423,4 @@ with open(full_name, "r+") as f:
 
     add_line(f, "\n" + " " + "Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). \n" + " " + " Print s0. \n")
 
+    run_coq_command(f, Type.STATE)

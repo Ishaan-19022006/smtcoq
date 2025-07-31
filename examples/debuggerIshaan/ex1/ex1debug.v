@@ -26,5 +26,6 @@ Section ex1debug.
 (* Start state *) 
 
  Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). 
-  Print s0. 
+(*   Print s0. *) (* s0 = {| [(4] |} *)
+
 End ex1debug.

@@ -77,15 +77,16 @@ def parse_int(coq_op):
     l = coq_op.split("%", 1)
     return l[0].strip().strip("()")
 
-
+coq_int = """nclauses1 = 2%int63
+     : int"""
 def parse_coq_int(coq_op):
     
     after_equal = coq_op.split(' = ')[1]
     between = after_equal.split(' : ')[0]  
     num = between.strip()  
-    print(" this is " , num)
+    print(num)
 
-#parse_coq_int("nclauses1 = 2%int63 : int")
+parse_coq_int(coq_int)
 
 def parse_multiple_list(state_output):
     new_state = state_output.split("::")
@@ -97,7 +98,7 @@ def parse_multiple_list(state_output):
 
 '''
 
-TODO: Function that takes 0%int63
+Function that takes 0%int63
           (8%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z)
        1%int63 (14%int63 :: nil)
        (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 2%int63
@@ -134,9 +135,9 @@ def list_to_parse(coq_op):
     final_result = ""
     for match in matches:
         result.append(match)
-        print(match)
-    final =  result
-    for word in final:
+        
+    
+    for word in result:
             final_result += parse_multiple_list(word) + ","
 
     return final_result[:-1]
@@ -211,4 +212,4 @@ def parse_state_op(coq_op):
 
     return "(* " + var + " = " + "{| " + final_parse + " |} *)\n"
 
-print(parse_state_op(long))
+#print(parse_state_op(long))
