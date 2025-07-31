@@ -128,12 +128,13 @@ s4_1 = """0%int63
 def list_to_parse(coq_op):
     coq_op = coq_op.strip()
     
-    matches = re.findall(r'(\d+%int63)\s*(\([^()]*? :: nil\))', coq_op)
+    matches = re.findall(r'(\([^()]*? :: nil\))', coq_op)
 
     result = []
     final_result = ""
     for match in matches:
-        result.append(match[1])
+        result.append(match)
+        print(match)
     final =  result
     for word in final:
             final_result += parse_multiple_list(word) + ","
@@ -144,13 +145,9 @@ def list_to_parse(coq_op):
 
 
     #r = raw string, used in regex so that we are not finding patterns on strings which are automatically spaced out or tabbed out by python
-    #first group (\d+%int63) will match any number of digits followed by %int63
-   # \d:  digit(0-9)
-   # \d+: will match one more digits together, allowing us to find numbers which are more than one digit long 
-   # %int63: string literal in this context
-   # \s*: any whitespace, including spaces and tabs ( * means zero or more times, incase there is no space)
     
-   # second group (\([^()]*? :: nil\)) will match a Coq list, which is of the form (x%int63 :: nil)
+    
+   # group (\([^()]*? :: nil\)) will match a Coq list, which is of the form (x%int63 :: nil)
    # \( and /): literal parenthesis for the coq list
    # [] : charcter set, this is where we specify what characters we want to match
    # ^() : match anything that is not a parenthesis, so we can match more elements in the list

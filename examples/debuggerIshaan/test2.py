@@ -1,3 +1,4 @@
+import re 
 '''
 TODO : Parse
 
@@ -58,6 +59,13 @@ def parse_Res(coq_op):
     new_str = s_lst[1]
     final = new_str.split(";", 1) 
     words = final[0]
+    
+    matches = re.findall(r'(\d+%int63)', words)
+    result = []
+    final_result = ""
+    for match in matches:
+        result.append(match)
+    print(result)
     '''
     Get all Coq integers and then print them skip every other interval 
     ex : 0%int63

@@ -108,11 +108,13 @@ returns [4], [0]
 def list_to_parse(coq_op):
     coq_op = coq_op.strip()
     
-    matches = re.findall(r"(\d+%int63)\s*(\([^()]*? :: nil\))", coq_op)
+    matches = re.findall(r'(\([^()]*? :: nil\))', coq_op)
+
     result = []
     final_result = ""
     for match in matches:
-        result.append(match[1])
+        result.append(match)
+        print(match)
     final =  result
     for word in final:
             final_result += parse_list(word) + ","
