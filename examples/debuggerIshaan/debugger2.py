@@ -5,7 +5,7 @@ import subprocess
 from enum import Enum
 import re
 
-#Enum type to distinguish Coq Bools and Coq Ints
+#Enum type to distinguish Coq output types
 class Type(Enum):
     BOOL = 1. # Coq Bool
     INT = 2. # Coq Int
@@ -98,12 +98,20 @@ def parse_coq_int_op(coq_op):
 
 '''
 
-Takes 0%int63
+Takes 
+1. 0%int63
        (4%int63 :: nil)
        (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 1%int63
           (0%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z
           
 returns [4], [0]
+
+2. 0%int63
+       nil
+       (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 1%int63
+          (0%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z
+
+returns [], [0]
 
 '''
 
