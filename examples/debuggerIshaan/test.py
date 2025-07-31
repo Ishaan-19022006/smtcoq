@@ -15,7 +15,30 @@ s_lst = s.split("(PArray.Map.Raw.Leaf C.t)", 1)
 new_str = s_lst[1]
 final = new_str.split(";", 1)
 #print(final[0])
-
+long = """s1 = 
+({|
+   PArray.Map.this :=
+     PArray.Map.Raw.Node
+       (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 0%int63
+          (8%int63 :: nil) (PArray.Map.Raw.Leaf C.t) 1%Z)
+       1%int63 (14%int63 :: nil)
+       (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 2%int63
+          (21%int63 :: nil)
+          (PArray.Map.Raw.Node (PArray.Map.Raw.Leaf C.t) 3%int63
+             (7%int63 :: 13%int63 :: 16%int63 :: nil)
+             (PArray.Map.Raw.Leaf C.t) 1%Z) 2%Z) 3%Z;
+   PArray.Map.is_bst :=
+     PArray.Map.Raw.Proofs.add_bst 3%int63
+       (7%int63 :: 13%int63 :: 16%int63 :: nil)
+       (PArray.Map.Raw.Proofs.add_bst 2%int63 
+          (21%int63 :: nil)
+          (PArray.Map.Raw.Proofs.add_bst 1%int63
+             (14%int63 :: nil)
+             (PArray.Map.Raw.Proofs.add_bst 0%int63
+                (8%int63 :: nil)
+                (PArray.Map.Raw.Proofs.empty_bst (list int)))))
+ |}, 0%int63 :: nil, 7%int63)
+     : PArray.Map.t C.t * C.t * int"""
 s2 = """
 s1 = 
 ({|
@@ -191,4 +214,4 @@ def parse_state_op(coq_op):
 
     return "(* " + var + " = " + "{| " + final_parse + " |} *)\n"
 
-print(parse_state_op(s2))
+print(parse_state_op(long))
