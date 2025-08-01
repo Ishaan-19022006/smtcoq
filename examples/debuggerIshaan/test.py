@@ -131,10 +131,10 @@ s10 = """0%int63 nil
 
 def list_to_parse(coq_op):
     coq_op = coq_op.strip()
-    
-    
-    matches = re.findall(r'(\([^()]*? :: nil\))|(?:(nil))', coq_op)
-    
+
+
+    matches = re.findall(r'(\([^()]*? :: nil\))|(nil)', coq_op)
+
     result = []
     final_result = ""
     for match in matches:
@@ -166,7 +166,6 @@ print(list_to_parse(s10) )
    # ? : makes this character set optional, so if there are no elements after the first coq integer it will move onto :: nil
 
    # | : this is the OR keyword, so that we match either a coq list or the word nil
-   # ?: : this will ensure that nil is not captured in the result even though we are trying to get it as a match
    # (nil) : this is the string literal nil which we want to match 
 
 '''

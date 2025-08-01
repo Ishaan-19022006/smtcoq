@@ -117,10 +117,10 @@ returns [], [0]
 
 def list_to_parse(coq_op):
     coq_op = coq_op.strip()
-    
-    
-    matches = re.findall(r'(\([^()]*? :: nil\))|(?:(nil))', coq_op)
-    
+
+
+    matches = re.findall(r'(\([^()]*? :: nil\))|(nil)', coq_op)
+
     result = []
     final_result = ""
     for match in matches:
