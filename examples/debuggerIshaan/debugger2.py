@@ -392,7 +392,6 @@ with open(full_name, "r+") as f:
     "End " + base_name + "debug."
     )
 
-    #Step 3.
     '''
 
     Takes 1. file object 2. Type (Enum)
@@ -406,7 +405,19 @@ with open(full_name, "r+") as f:
         coq_op = run_coqc(full_name, t)
         replace_coql(f, i, coq_op)
     
-    run_coq_command(f, Type.INT)
+    
+    '''
+
+    Takes 1. file object 2. Type (Enum)
+    runs coq file; parses output; returns output as Python type
+
+    '''
+    def run_coq_command_return(f, t):
+        i = file_length(f) - 2
+        coq_op = run_coqc(full_name, t)
+        if(t == Type.INT):
+            uncommented_op = coq_op.strip("(* ").strip(" *)")
+            return int(uncommented_op)
 
     '''
 
@@ -423,12 +434,19 @@ with open(full_name, "r+") as f:
         lines.insert(file_length(f) - 1, next_line)
         f.seek(0)
         f.writelines(lines)
+    
+
+    #Step 3.
+    #Run Coq commands, capture output in Coq comments
+    run_coq_command(f, Type.INT)
 
     add_line(f, "\n " + " " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n")
     
     run_coq_command(f, Type.INT)
 
     add_line(f, "\n" + " " + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n" )
+
+    n = run_coq_command_return(f, Type.INT) #No. of steps in certificate
 
     run_coq_command(f, Type.INT)
 
@@ -442,26 +460,8 @@ with open(full_name, "r+") as f:
 
     run_coq_command(f, Type.STATE)
 
-    add_line(f, "\n" + " " +  "Eval vm_compute in List.nth 0 (fst c) _.\n")
-
-    run_coq_command(f, Type.STEP)
-
-    add_line(f, "\n" + " " + "Definition s1 := Eval vm_compute in (step_checker s0 (List.nth 0 (fst c) (CTrue t_func t_atom t_form 0))). \n" + " " + "Print s1. \n")
-    
-    run_coq_command(f, Type.STATE)
-
-    add_line(f, "\n" + " " +  "Eval vm_compute in List.nth 1 (fst c) _.\n")
-
-    run_coq_command(f, Type.STEP)
-
-    add_line(f, "\n" + " " + "Definition s2 := Eval vm_compute in (step_checker s1 (List.nth 1 (fst c) (CTrue t_func t_atom t_form 0))).\n" + " " + "Print s2. \n")
-
-    run_coq_command(f, Type.STATE)
-
-    add_line(f, "\n" + " " + "Eval vm_compute in List.nth 2 (fst c) _.\n")
-
-    run_coq_command(f, Type.STEP)
-
-    add_line(f, "\n" + " " + "Definition s3 := Eval vm_compute in (step_checker s2 (List.nth 2 (fst c) (CTrue t_func t_atom t_form 0))).\n" + " " + "Print s3. \n")
-
-    run_coq_command(f, Type.STATE)
+    for i in range(n):
+        add_line(f, "\n" + " " +  "Eval vm_compute in List.nth " + str(i) + " (fst c) _.\n")
+        run_coq_command(f, Type.STEP)
+        add_line(f, "\n" + " " + "Definition s" + str(i + 1) + " := Eval vm_compute in (step_checker s" + str(i) + " (List.nth " + str(i) + " (fst c) (CTrue t_func t_atom t_form 0))). \n" + " " + "Print s" + str(i + 1) + ". \n")
+        run_coq_command(f, Type.STATE)
