@@ -227,10 +227,94 @@ this output:
 The comment begins with a number, which starts at `1` and increases by 
 1 for each block. This is followed by the name of the rule used for the 
 certificate, in this case `ImmBuildProj` the rest of the comment is
-a little hard to parse out, we'll discuss how to correctly do this
-when the time comes.
+a little hard to parse out. The comment points to a step 
+in the certificate. A step can have various forms, all the 
+forms are listed in `src/Trace.v` lines 327-372. Each line (except the Coq comment) refers to the form a step can take.
+The code from `Trace.v` is presented here with some annotations:
+```
+Inductive step :=
+(* Take 1 integer *)
+  | CTrue (pos:int)
+  | CFalse (pos:int)
 
-This will be followed by an empty line for readability.
+(* Take 2 integers *)
+  | BuildDef (pos:int) (l:_lit)
+  | BuildDef2 (pos:int) (l:_lit)
+  | ImmBuildDef (pos:int) (cid:clause_id)
+  | ImmBuildDef2 (pos:int) (cid:clause_id)
+  | Res (pos:int) (res:resolution)
+  | BBVar (pos:int) (res:_lit)
+  | BBConst (pos:int) (res:_lit)
+  | BBDiseq (pos:int) (res:_lit)
+  | RowEq (pos:int) (res: _lit)  
+  | Ext (pos:int) (res: _lit)
+  | LiaDiseq (pos:int) (l:_lit)
+
+(* Take 3 integers *)
+  | Weaken (pos:int) (cid:clause_id) (cl:list _lit)
+  | ImmFlatten (pos:int) (cid:clause_id) (lf:_lit)
+  | Tautology (pos:int) (cid:clause_id) (l:_lit)
+  | BuildProj (pos:int) (l:_lit) (i:int)
+  | ImmBuildProj (pos:int) (cid:clause_id) (i:int)
+  | SplDistinctElim (pos:int) (orig:clause_id) (res:_lit)
+  | BBNot (pos:int) (orig:clause_id) (res:_lit)
+  | BBNeg (pos:int) (orig:clause_id) (res:_lit)
+  | BBExtract (pos:int) (orig:clause_id) (res:_lit)
+  | BBZextend (pos:int) (orig:clause_id) (res:_lit)
+  | BBSextend (pos:int) (orig:clause_id) (res:_lit)
+
+(* Take 4 integers *)
+  | BBOp (pos:int) (orig1 orig2:clause_id) (res:_lit)
+  | BBAdd (pos:int) (orig1 orig2:clause_id) (res:_lit)
+  | BBConcat (pos:int) (orig1 orig2:clause_id) (res:_lit)
+  | BBMul (pos:int) (orig1 orig2:clause_id) (res:_lit)
+  | BBUlt (pos:int) (orig1 orig2:clause_id) (res:_lit)
+  | BBSlt (pos:int) (orig1 orig2:clause_id) (res:_lit)
+  | BBEq (pos:int) (orig1 orig2:clause_id) (res:_lit)
+  | BBShl (pos:int) (orig1 orig2:clause_id) (res:_lit)
+  | BBShr (pos:int) (orig1 orig2:clause_id) (res:_lit)
+
+(* Takes integer, list of integers, integer)
+  | DistElim (pos:int) (cl:list _lit) (l:_lit)
+
+(* Takes integer, integer, list of integers)
+  | EqTr (pos:int) (l:_lit) (fl: list _lit)  
+  
+(* Takes integer, integer, list of integer options *)
+  | EqCgr (pos:int) (l:_lit) (fl: list (option _lit))
+
+(* Takes integer, integer, integer, list of integer options *)
+  | EqCgrP (pos:int) (l1:_lit) (l2:_lit) (fl: list (option _lit))
+
+(* Takes integer, array of integers *)
+  | Res (pos:int) (res:resolution)
+
+(* We can ignore these for now; may be combine them, and as soon as you read a step of any of these types, have the 
+script print an error message saying this step type is not
+supported *)  
+  | RowNeq (pos:int) (cl: C.t)
+  | LiaMicromega (pos:int) (cl:list _lit) (c:list ZMicromega.ZArithProof)
+  | SplArith (pos:int) (orig:clause_id) (res:_lit) (l:list ZMicromega.ZArithProof)
+  (* Offer the possibility to discharge parts of the proof to (manual) Coq proofs.
+     WARNING: this breaks extraction. *)
+  | Hole (pos:int) (prem_id:list clause_id) (prem:list C.t) (concl:C.t)
+    (p:interp_conseq_uf (Form.interp_state_var (Atom.interp_form_hatom t_i t_func t_atom) (Atom.interp_form_hatom_bv t_i t_func t_atom) t_form) prem concl)
+  | ForallInst (pos:int) (lemma:Prop) (plemma:lemma) (concl:C.t)
+    (p: lemma -> interp_conseq_uf (Form.interp_state_var (Atom.interp_form_hatom t_i t_func t_atom) (Atom.interp_form_hatom_bv t_i t_func t_atom) t_form) nil concl)
+  .
+```
+Each step takes a particular number of arguments in some 
+order. Above, the rules that take the same number and type
+of arguments have been grouped together. The first few
+are easy to parse since they take some number of integers.
+The more complicated ones take arrays, lists, and option types.
+An option type is a regular type that is stored inside another 
+type. The only options that you have to deal with here are
+integer options. An value of the integer option type is
+either `Some n` where `n` can be any integer, or `None`.
+
+The `Eval` command for the step type will be
+followed by an empty line for readability.
 
 Then, there will be `n` blocks (where `n` is the number of steps
 in the certificate) that look like this:
