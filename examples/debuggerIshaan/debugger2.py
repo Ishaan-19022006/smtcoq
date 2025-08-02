@@ -152,7 +152,11 @@ returns ImmBuildProj 1 0 0
 
 def parse_Step(coq_op):
     
-    if "ImmBuildProj" in coq_op.split():
+    if "Res" in coq_op.split():
+        op = parse_Res(coq_op)
+        return op
+    
+    else: #handles all steps which take upto 4 integers 
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
         first_word = split[0].replace("=", "").strip()
         second_word = split[1].split(":")[0]
@@ -165,9 +169,6 @@ def parse_Step(coq_op):
             final_list += w + " "
 
         return "(* " + final_list + " *)"
-    else:
-        op = parse_Res(coq_op)
-        return op
 
 
 '''
