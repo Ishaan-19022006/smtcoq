@@ -87,7 +87,7 @@ def parse_coq_int(coq_op):
 
 
 
-def parse_multiple_list(state_output):
+def parse_list(state_output):
     new_state = state_output.split("::")
     int_list =  ""
     for item in new_state[:-1]:  

@@ -68,6 +68,13 @@ s = '''= Res (t_i:=t_i) t_func t_atom t_form 5
     then return Res 0 {| 1, 0 |}
                    
 '''
+def parse_list(state_output):
+    new_state = state_output.split("::")
+    int_list =  ""
+    for item in new_state[:-1]:  
+        int_list += parse_int(item) + ";"
+
+    return "[" + int_list[:-1] + "]"
 
 def parse_Res(coq_op):
     coq_list = coq_op.split()
@@ -102,14 +109,84 @@ def parse_Step(coq_op):
         op = parse_Res(coq_op)
         return op
     
-    elif no_step[0:] in coq_op.split():
+    elif "EqTr" in coq_op.split():
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+
+        first_word = split[0].replace("=", "").strip() #step name 
+
+        second_word = split[1].split("step")[0] #numbers after (t_i:=t_i) t_func t_atom t_form
+
+        sw_split = second_word.split()
+
+        first_num = sw_split[0] #first number 
+        second_num = sw_split[1] # second number 
+
+        
+        
+        matches = re.findall(r'(\d+%int63)', second_word)
+        final_result = ""
+        for match in matches:
+            final_result += parse_int(match) + ";"
+        
+        return "(* " + first_word + " " + first_num + " " + second_num + " " + "(" + final_result[:-1] + ")" + " *)" 
+    
+    elif "DistElim" in coq_op.split():
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+
+        first_word = split[0].replace("=", "").strip() #step name 
+
+        second_word = split[1].split("step")[0] #numbers after (t_i:=t_i) t_func t_atom t_form
+
+        sw_split = second_word.split()
+        
+        first_num = sw_split[0] #first number 
+        last_num = sw_split[len(sw_split)-2] # last number 
+        
+        matches = re.findall(r'(\d+%int63)', second_word)
+        final_result = ""
+        for match in matches:
+            final_result += parse_int(match) + ";"
+        
+        return "(* " + first_word + " " + first_num + " " + "(" + final_result[:-1] + ")" + " " + last_num + " *)" 
+    
+
+    elif "EqCgr" in coq_op.split():
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+
+        first_word = split[0].replace("=", "").strip() #step name 
+
+        second_word = split[1].split("step")[0] #numbers after (t_i:=t_i) t_func t_atom t_form
+
+        sw_split = second_word.split()
+
+        first_num = sw_split[0] #first number 
+        second_num = sw_split[1] # second number 
+        
+    
+    elif "EqCgrP" in coq_op.split():
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+
+        first_word = split[0].replace("=", "").strip() #step name 
+
+        second_word = split[1].split("step")[0] #numbers after (t_i:=t_i) t_func t_atom t_form
+
+        sw_split = second_word.split()
+
+        first_num = sw_split[0] #first number 
+        second_num = sw_split[1] # second number 
+        third_num = sw_split[2] #third number 
+        
+        
+
+    elif any(step in coq_op.split() for step in no_step):
       print(" this step is not valid ") 
 
     else: #handles all steps which take upto 4 integers 
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
-        first_word = split[0].replace("=", "").strip()
-        second_word = split[1].split(":")[0]
-
+        first_word = split[0].replace("=", "").strip() #step name 
+        
+        second_word = split[1].split(":")[0] #numbers after (t_i:=t_i) t_func t_atom t_form
+        
         final_word = (first_word + second_word).replace("\n", "")
         word = final_word.split()
         final_list = ""
@@ -121,8 +198,8 @@ def parse_Step(coq_op):
       
 
 
-op_1 = """= Rowneq (t_i:=t_i) t_func t_atom t_form 1
-          0 0 0 
+op_1 = """= EqCgrP (t_i:=t_i) t_func t_atom t_form 1
+          0 0
      : step (t_i:=t_i) t_func t_atom t_form"""
 
 print(parse_Step(op_1))
