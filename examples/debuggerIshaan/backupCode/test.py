@@ -145,7 +145,7 @@ def list_to_parse(coq_op):
         
     
     for word in result:
-            final_result += parse_multiple_list(word) + ","
+            final_result += parse_list(word) + ","
 
     return final_result[:-1]
 
