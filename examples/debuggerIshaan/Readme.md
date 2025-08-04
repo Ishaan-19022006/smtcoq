@@ -26,7 +26,6 @@ python3 debugger.py foo
 - Here, the first comment is 
 ```
 (*  Print nclauses. *)
-
 ```
 this is a line which was already present in the generated debug file and has been ran and commented out.
 - The second comment is 
@@ -35,7 +34,7 @@ this is a line which was already present in the generated debug file and has bee
 ```
 this was the output we got from running ` Print nclauses.` and has also been commeneted out.
 - In general, all coq comments in the debug file will be in this layout, where the line will have 2 parts. 
--  The first part will be the already ran line in the debug file.
+- The first part will be the already ran line in the debug file.
 - The second part will be the output we got from the first part.  
 
 # Example
