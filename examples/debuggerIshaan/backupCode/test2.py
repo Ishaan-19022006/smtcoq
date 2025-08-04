@@ -95,11 +95,16 @@ def parse_Res(coq_op):
     return "(* " + var + " " + firstnum + " " + "{|" + (final_result[:-1]) + "|} *)"
     
 def parse_Step(coq_op):
-    
+
+    no_step = ["RowNeq", "LiaMicromega", "SplArith", "Hole", "ForallInst"]
+
     if "Res" in coq_op.split():
         op = parse_Res(coq_op)
         return op
     
+    elif no_step[0:] in coq_op.split():
+      print(" this step is not valid ") 
+
     else: #handles all steps which take upto 4 integers 
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
         first_word = split[0].replace("=", "").strip()
@@ -113,10 +118,10 @@ def parse_Step(coq_op):
             final_list += w + " "
 
         return "(* " + final_list + " *)"
-    
+      
 
 
-op_1 = """= BBOp (t_i:=t_i) t_func t_atom t_form 1
+op_1 = """= Rowneq (t_i:=t_i) t_func t_atom t_form 1
           0 0 0 
      : step (t_i:=t_i) t_func t_atom t_form"""
 
