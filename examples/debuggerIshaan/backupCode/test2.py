@@ -233,7 +233,7 @@ def parse_Step(coq_op):
 op_1 = """= EqCgr (t_i:=t_i) t_func t_atom t_form 1
           0 (Some 5%int63 :: None :: nil)
      : step (t_i:=t_i) t_func t_atom t_form"""
-# should be (* EqCgr 1 0 (S 5 ; N ))
+# should be (* EqCgr 1 0 [S 5 ; N ] )
 
 print(parse_Step(op_1))
 
