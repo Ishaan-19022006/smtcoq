@@ -29,7 +29,7 @@ return Res 0 {| 1, 0 |}
 
 def parse_int(coq_op):
     l = coq_op.rsplit("%", 1)
-    num = l[0]
+    num = l[0].strip("()")
     return num
 
 
@@ -161,7 +161,24 @@ def parse_Step(coq_op):
 
         first_num = sw_split[0] #first number 
         second_num = sw_split[1] # second number 
+
+        matches = re.findall(r'(\([^()]*? :: nil\))|(nil)', second_word)
+        result = []
+        final_result = ""
+        for match in matches:
+          for m in match:
+              if m:
+                result.append(m)
+              
+        for word in result:
+                
+                final_result += parse_list(word) 
+          
+        #pakka_final = final_result.strip("[").strip("]")
+                
         
+        return "(* " + first_word + " " + first_num + " " + second_num + " " + "( " + final_result + ")" + " *)"
+            
     
     elif "EqCgrP" in coq_op.split():
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
@@ -175,7 +192,22 @@ def parse_Step(coq_op):
         first_num = sw_split[0] #first number 
         second_num = sw_split[1] # second number 
         third_num = sw_split[2] #third number 
-        
+
+        matches = re.findall(r'(\([^()]*? :: nil\))|(nil)', second_word)
+        result = []
+        final_result = ""
+        for match in matches:
+          for m in match:
+              if m:
+                result.append(m)
+            
+        for word in result:
+                final_result += parse_list(word) 
+                
+        #pakka_final = final_result.strip("[").strip("]")
+                
+        return "(* " + first_word + " " + first_num + " " + second_num + " " + third_num + " " + "( " + final_result + ")" + " *)"
+                    
         
 
     elif any(step in coq_op.split() for step in no_step):
@@ -199,7 +231,13 @@ def parse_Step(coq_op):
 
 
 op_1 = """= EqCgrP (t_i:=t_i) t_func t_atom t_form 1
-          0 0
+          0 1 (None :: nil)
      : step (t_i:=t_i) t_func t_atom t_form"""
 
 print(parse_Step(op_1))
+
+
+'''
+List of integer options 
+
+'''

@@ -23,7 +23,7 @@ Ex: takes "0%int63", returns "0"
 
 def parse_int(coq_op):
     l = coq_op.rsplit("%", 1)
-    num = l[0].strip().strip("()")
+    num = l[0].strip("()")
     return num
     
 
