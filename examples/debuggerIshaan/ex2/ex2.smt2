@@ -1,0 +1,8 @@
+(set-logic UFLIA)
+(declare-fun x () Int)
+(declare-fun y () Int)
+(declare-fun f (Int) Int)
+(assert (= x y))
+(assert (not (= (f x) (f y))))
+(check-sat)
+(exit)

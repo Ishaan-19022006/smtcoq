@@ -1,0 +1,4 @@
+(assume a0 (= x y))
+(assume a1 (not (= (f x) (f y))))
+(step t2 (cl (not (= x y)) (= (f x) (f y))) :rule eq_congruent)
+(step t3 (cl) :rule resolution :premises (t2 a0 a1))
