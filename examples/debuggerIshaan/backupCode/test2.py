@@ -173,11 +173,18 @@ def parse_Step(coq_op):
         for word in result:
                 
                 final_result += parse_list(word) 
-          
-        #pakka_final = final_result.strip("[").strip("]")
-                
         
-        return "(* " + first_word + " " + first_num + " " + second_num + " " + "( " + final_result + ")" + " *)"
+        final_matches = re.findall(r'Some|None', final_result)
+        for fm in final_matches:
+          
+          if fm == "Some" :
+              final_result = final_result.replace("Some", "S")
+          elif fm == "None" :
+              final_result = final_result.replace("None", "N")
+        
+        
+        
+        return "(* " + first_word + " " + first_num + " " + second_num + " " +  final_result  + " *)"
             
     
     elif "EqCgrP" in coq_op.split():
@@ -203,10 +210,16 @@ def parse_Step(coq_op):
             
         for word in result:
                 final_result += parse_list(word) 
-                
-        #pakka_final = final_result.strip("[").strip("]")
-                
-        return "(* " + first_word + " " + first_num + " " + second_num + " " + third_num + " " + "( " + final_result + ")" + " *)"
+        
+        final_matches = re.findall(r'Some|None', final_result)
+        for fm in final_matches:
+          
+          if fm == "Some" :
+              final_result = final_result.replace("Some", "S")
+          elif fm == "None" :
+              final_result = final_result.replace("None", "N")
+                 
+        return "(* " + first_word + " " + first_num + " " + second_num + " " + third_num + " " +  final_result  + " *)"
                     
         
 
@@ -230,8 +243,8 @@ def parse_Step(coq_op):
       
 
 
-op_1 = """= EqCgr (t_i:=t_i) t_func t_atom t_form 1
-          0 (Some 5%int63 :: None :: nil)
+op_1 = """= EqCgrP (t_i:=t_i) t_func t_atom t_form 1
+          0 0 (nil)
      : step (t_i:=t_i) t_func t_atom t_form"""
 # should be (* EqCgr 1 0 [S 5 ; N ] )
 

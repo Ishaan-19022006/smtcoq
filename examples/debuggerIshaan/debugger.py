@@ -151,16 +151,136 @@ returns ImmBuildProj 1 0 0
 
 
 def parse_Step(coq_op):
-    
+
+    no_step = ["RowNeq", "LiaMicromega", "SplArith", "Hole", "ForallInst"]
+
     if "Res" in coq_op.split():
         op = parse_Res(coq_op)
         return op
     
-    else: #handles all steps which take upto 4 integers 
+    elif "EqTr" in coq_op.split():
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
-        first_word = split[0].replace("=", "").strip()
-        second_word = split[1].split(":")[0]
 
+        first_word = split[0].replace("=", "").strip() 
+
+        second_word = split[1].split("step")[0] 
+
+        sw_split = second_word.split()
+
+        first_num = sw_split[0] #first number 
+        second_num = sw_split[1] # second number 
+
+        
+        
+        matches = re.findall(r'(\d+%int63)', second_word)
+        final_result = ""
+        for match in matches:
+            final_result += parse_int(match) + ";"
+        
+        return "(* " + first_word + " " + first_num + " " + second_num + " " + "(" + final_result[:-1] + ")" + " *)" 
+    
+    elif "DistElim" in coq_op.split():
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+
+        first_word = split[0].replace("=", "").strip() 
+
+        second_word = split[1].split("step")[0] 
+
+        sw_split = second_word.split()
+        
+        first_num = sw_split[0] 
+        last_num = sw_split[len(sw_split)-2] 
+        
+        matches = re.findall(r'(\d+%int63)', second_word)
+        final_result = ""
+        for match in matches:
+            final_result += parse_int(match) + ";"
+        
+        return "(* " + first_word + " " + first_num + " " + "(" + final_result[:-1] + ")" + " " + last_num + " *)" 
+    
+      
+    elif "EqCgr" in coq_op.split():
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+
+        first_word = split[0].replace("=", "").strip() 
+
+        second_word = split[1].split("step")[0] 
+
+        sw_split = second_word.split()
+
+        first_num = sw_split[0] 
+        second_num = sw_split[1] 
+
+        matches = re.findall(r'(\([^()]*? :: nil\))|(nil)', second_word)
+        result = []
+        final_result = ""
+        for match in matches:
+          for m in match:
+              if m:
+                result.append(m)
+              
+        for word in result:
+                
+                final_result += parse_list(word) 
+        
+        final_matches = re.findall(r'Some|None', final_result)
+        for fm in final_matches:
+          
+          if fm == "Some" :
+              final_result = final_result.replace("Some", "S")
+          elif fm == "None" :
+              final_result = final_result.replace("None", "N")
+        
+        
+        
+        return "(* " + first_word + " " + first_num + " " + second_num + " " +  final_result  + " *)"
+            
+    
+    elif "EqCgrP" in coq_op.split():
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+
+        first_word = split[0].replace("=", "").strip()  
+
+        second_word = split[1].split("step")[0] 
+
+        sw_split = second_word.split()
+
+        first_num = sw_split[0] 
+        second_num = sw_split[1]  
+        third_num = sw_split[2] 
+
+        matches = re.findall(r'(\([^()]*? :: nil\))|(nil)', second_word)
+        result = []
+        final_result = ""
+        for match in matches:
+          for m in match:
+              if m:
+                result.append(m)
+            
+        for word in result:
+                final_result += parse_list(word) 
+        
+        final_matches = re.findall(r'Some|None', final_result)
+        for fm in final_matches:
+          
+          if fm == "Some" :
+              final_result = final_result.replace("Some", "S")
+          elif fm == "None" :
+              final_result = final_result.replace("None", "N")
+                 
+        return "(* " + first_word + " " + first_num + " " + second_num + " " + third_num + " " +  final_result  + " *)"
+                    
+        
+
+    elif any(step in coq_op.split() for step in no_step):
+      print(" this step is not valid ") 
+
+    else: 
+        split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
+        first_word = split[0].replace("=", "").strip()  
+        
+        second_word = split[1].split(":")[0] 
+        
         final_word = (first_word + second_word).replace("\n", "")
         word = final_word.split()
         final_list = ""
