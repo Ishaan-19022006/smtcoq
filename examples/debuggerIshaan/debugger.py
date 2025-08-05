@@ -139,12 +139,26 @@ def list_to_parse(coq_op):
 '''
 
 
-Takes the string 
-= ImmBuildProj (t_i:=t_i) t_func t_atom t_form 1
-         0 0
-     : step (t_i:=t_i) t_func t_atom t_form
+Parses all types of inductive steps 
 
-returns ImmBuildProj 1 0 0
+Example :
+1. Takes = ImmmbuildProj (t_i:=t_i) t_func t_atom t_form 1
+          0 0 
+     : step (t_i:=t_i) t_func t_atom t_form"""
+    
+     Returns (* ImmbuildProj 1 0 0 *)
+
+2. Takes = DistElim (t_i:=t_i) t_func t_atom t_form 1
+          [5%int63 :: 6%int63 :: nil] 0 
+     : step (t_i:=t_i) t_func t_atom t_form"""
+    
+     Returns (* DistElim 1 [5; 6] 0 *)
+
+3. Takes = EqCgr (t_i:=t_i) t_func t_atom t_form 1
+          0 (Some 5%int63 :: Some 6%int63 :: None :: nil)
+     : step (t_i:=t_i) t_func t_atom t_form"""
+    
+     Returns (* EqCgr 1 0 [S 5 ; S 6 ; N] *)
 
 
 '''
@@ -167,8 +181,8 @@ def parse_Step(coq_op):
 
         sw_split = second_word.split()
 
-        first_num = sw_split[0] #first number 
-        second_num = sw_split[1] # second number 
+        first_num = sw_split[0] 
+        second_num = sw_split[1]  
 
         
         
