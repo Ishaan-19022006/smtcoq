@@ -149,7 +149,7 @@ def parse_Step(coq_op):
         
         return "(* " + first_word + " " + first_num + " " + "(" + final_result[:-1] + ")" + " " + last_num + " *)" 
     
-
+      # TODO : parse Some 5%int63 to S 5 and None to N 
     elif "EqCgr" in coq_op.split():
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
 
@@ -230,9 +230,10 @@ def parse_Step(coq_op):
       
 
 
-op_1 = """= EqCgrP (t_i:=t_i) t_func t_atom t_form 1
-          0 1 (None :: nil)
+op_1 = """= EqCgr (t_i:=t_i) t_func t_atom t_form 1
+          0 (Some 5%int63 :: None :: nil)
      : step (t_i:=t_i) t_func t_atom t_form"""
+# should be (* EqCgr 1 0 (S 5 ; N ))
 
 print(parse_Step(op_1))
 
