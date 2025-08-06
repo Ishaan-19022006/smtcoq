@@ -287,7 +287,7 @@ def parse_Step(coq_op):
         
 
     elif any(step in coq_op.split() for step in no_step):
-      print(" this step is not valid ") 
+      return ("(* step is not valid *)") 
 
     else: 
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")

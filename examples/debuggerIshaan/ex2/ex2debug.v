@@ -28,7 +28,7 @@ Section ex2debug.
  Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). 
 (*   Print s0. *) (* s0 = {| [4],[7] |} *)
 
-(*  Eval vm_compute in List.nth 0 (fst c) _. *) (* EqCgr 2 6 (Some 5%int63  *)
+(*  Eval vm_compute in List.nth 0 (fst c) _. *) (* EqCgr 2 6 [S 5] *)
 
  Definition s1 := Eval vm_compute in (step_checker s0 (List.nth 0 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s1. *) (* s1 = {| [4],[7],[5; 6] |} *)
