@@ -172,17 +172,17 @@ def parse_Step(coq_op):
         op = parse_Res(coq_op)
         return op
     
-    elif "EqTr" in coq_op.split():
+    elif "EqTr" in coq_op.split() or "Weaken" in coq_op.split():
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
 
-        first_word = split[0].replace("=", "").strip() 
+        first_word = split[0].replace("=", "").strip()  
 
         second_word = split[1].split("step")[0] 
 
         sw_split = second_word.split()
 
         first_num = sw_split[0] 
-        second_num = sw_split[1]  
+        second_num = sw_split[1] 
 
         
         
@@ -191,7 +191,7 @@ def parse_Step(coq_op):
         for match in matches:
             final_result += parse_int(match) + ";"
         
-        return "(* " + first_word + " " + first_num + " " + second_num + " " + "(" + final_result[:-1] + ")" + " *)" 
+        return "(* " + first_word + " " + first_num + " " + second_num + " " + "[" + final_result[:-1] + "]" + " *)" 
     
     elif "DistElim" in coq_op.split():
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
@@ -210,7 +210,7 @@ def parse_Step(coq_op):
         for match in matches:
             final_result += parse_int(match) + ";"
         
-        return "(* " + first_word + " " + first_num + " " + "(" + final_result[:-1] + ")" + " " + last_num + " *)" 
+        return "(* " + first_word + " " + first_num + " " + "[" + final_result[:-1] + "]" + " " + last_num + " *)" 
     
       
     elif "EqCgr" in coq_op.split():
@@ -253,14 +253,14 @@ def parse_Step(coq_op):
     elif "EqCgrP" in coq_op.split():
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
 
-        first_word = split[0].replace("=", "").strip()  
+        first_word = split[0].replace("=", "").strip() 
 
         second_word = split[1].split("step")[0] 
 
         sw_split = second_word.split()
 
         first_num = sw_split[0] 
-        second_num = sw_split[1]  
+        second_num = sw_split[1] 
         third_num = sw_split[2] 
 
         matches = re.findall(r'(\([^()]*? :: nil\))|(nil)', second_word)
@@ -287,11 +287,11 @@ def parse_Step(coq_op):
         
 
     elif any(step in coq_op.split() for step in no_step):
-      return ("(* step is not valid *)") 
+      return ("(* this step is not valid *) ") 
 
     else: 
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
-        first_word = split[0].replace("=", "").strip()  
+        first_word = split[0].replace("=", "").strip() 
         
         second_word = split[1].split(":")[0] 
         

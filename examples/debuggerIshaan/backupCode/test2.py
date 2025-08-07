@@ -109,7 +109,7 @@ def parse_Step(coq_op):
         op = parse_Res(coq_op)
         return op
     
-    elif "EqTr" in coq_op.split():
+    elif "EqTr" in coq_op.split() or "Weaken" in coq_op.split():
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
 
         first_word = split[0].replace("=", "").strip() #step name 
@@ -128,7 +128,7 @@ def parse_Step(coq_op):
         for match in matches:
             final_result += parse_int(match) + ";"
         
-        return "(* " + first_word + " " + first_num + " " + second_num + " " + "(" + final_result[:-1] + ")" + " *)" 
+        return "(* " + first_word + " " + first_num + " " + second_num + " " + "[" + final_result[:-1] + "]" + " *)" 
     
     elif "DistElim" in coq_op.split():
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
@@ -147,7 +147,7 @@ def parse_Step(coq_op):
         for match in matches:
             final_result += parse_int(match) + ";"
         
-        return "(* " + first_word + " " + first_num + " " + "(" + final_result[:-1] + ")" + " " + last_num + " *)" 
+        return "(* " + first_word + " " + first_num + " " + "[" + final_result[:-1] + "]" + " " + last_num + " *)" 
     
       # TODO : parse Some 5%int63 to S 5 and None to N 
     elif "EqCgr" in coq_op.split():
@@ -224,7 +224,7 @@ def parse_Step(coq_op):
         
 
     elif any(step in coq_op.split() for step in no_step):
-      print(" this step is not valid ") 
+      return (" this step is not valid ") 
 
     else: #handles all steps which take upto 4 integers 
         split = coq_op.split("(t_i:=t_i) t_func t_atom t_form")
@@ -243,8 +243,8 @@ def parse_Step(coq_op):
       
 
 
-op_1 = """= EqCgrP (t_i:=t_i) t_func t_atom t_form 1
-          0 0 (nil)
+op_1 = """= Weaken (t_i:=t_i) t_func t_atom t_form 1
+          0 (nil)
      : step (t_i:=t_i) t_func t_atom t_form"""
 # should be (* EqCgr 1 0 [S 5 ; N ] )
 

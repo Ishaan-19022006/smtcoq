@@ -251,7 +251,6 @@ Inductive step :=
   | LiaDiseq (pos:int) (l:_lit)
 
 (* Take 3 integers *)
-  | Weaken (pos:int) (cid:clause_id) (cl:list _lit)
   | ImmFlatten (pos:int) (cid:clause_id) (lf:_lit)
   | Tautology (pos:int) (cid:clause_id) (l:_lit)
   | BuildProj (pos:int) (l:_lit) (i:int)
@@ -279,6 +278,7 @@ Inductive step :=
 
 (* Takes integer, integer, list of integers)
   | EqTr (pos:int) (l:_lit) (fl: list _lit)  
+  | Weaken (pos:int) (cid:clause_id) (cl:list _lit)
   
 (* Takes integer, integer, list of integer options *)
   | EqCgr (pos:int) (l:_lit) (fl: list (option _lit))

@@ -38,7 +38,7 @@ Section test6cvc5debug.
  Definition s2 := Eval vm_compute in (step_checker s1 (List.nth 1 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s2. *) (* s2 = {| [11],[10; 13; 15],[10; 24] |} *)
 
-(*  Eval vm_compute in List.nth 2 (fst c) _. *) (* Weaken 2 2 (24%int63  *)
+(*  Eval vm_compute in List.nth 2 (fst c) _. *) (* Weaken 2 2 [24;10] *)
 
  Definition s3 := Eval vm_compute in (step_checker s2 (List.nth 2 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s3. *) (* s3 = {| [11],[10; 13; 15],[10; 24] |} *)
@@ -48,7 +48,7 @@ Section test6cvc5debug.
  Definition s4 := Eval vm_compute in (step_checker s3 (List.nth 3 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s4. *) (* s4 = {| [11],[10; 13; 15],[10; 24],[11; 24] |} *)
 
-(*  Eval vm_compute in List.nth 4 (fst c) _. *) (* Weaken 3 3 (24%int63  *)
+(*  Eval vm_compute in List.nth 4 (fst c) _. *) (* Weaken 3 3 [24;11] *)
 
  Definition s5 := Eval vm_compute in (step_checker s4 (List.nth 4 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s5. *) (* s5 = {| [11],[10; 13; 15],[10; 24],[11; 24] |} *)
@@ -63,7 +63,7 @@ Section test6cvc5debug.
  Definition s7 := Eval vm_compute in (step_checker s6 (List.nth 6 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s7. *) (* s7 = {| [11],[10; 13; 15],[10; 26],[24] |} *)
 
-(*  Eval vm_compute in List.nth 7 (fst c) _. *) (* Weaken 2 2 (25%int63  *)
+(*  Eval vm_compute in List.nth 7 (fst c) _. *) (* Weaken 2 2 [25;26;10] *)
 
  Definition s8 := Eval vm_compute in (step_checker s7 (List.nth 7 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s8. *) (* s8 = {| [11],[10; 13; 15],[10; 25; 26],[24] |} *)
@@ -78,7 +78,7 @@ Section test6cvc5debug.
  Definition s10 := Eval vm_compute in (step_checker s9 (List.nth 9 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s10. *) (* s10 = {| [11],[10; 13; 15],[10; 26],[24],[11; 26] |} *)
 
-(*  Eval vm_compute in List.nth 10 (fst c) _. *) (* Weaken 4 4 (25%int63  *)
+(*  Eval vm_compute in List.nth 10 (fst c) _. *) (* Weaken 4 4 [25;26;11] *)
 
  Definition s11 := Eval vm_compute in (step_checker s10 (List.nth 10 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s11. *) (* s11 = {| [11],[10; 13; 15],[10; 26],[24],[11; 25; 26] |} *)
@@ -93,7 +93,7 @@ Section test6cvc5debug.
  Definition s13 := Eval vm_compute in (step_checker s12 (List.nth 12 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s13. *) (* s13 = {| [11],[10; 13; 15],[10; 26],[26],[11; 25; 26] |} *)
 
-(*  Eval vm_compute in List.nth 13 (fst c) _. *) (* Weaken 2 0 (27%int63  *)
+(*  Eval vm_compute in List.nth 13 (fst c) _. *) (* Weaken 2 0 [27;11] *)
 
  Definition s14 := Eval vm_compute in (step_checker s13 (List.nth 13 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s14. *) (* s14 = {| [11],[10; 13; 15],[11; 27],[26],[11; 25; 26] |} *)
@@ -108,7 +108,7 @@ Section test6cvc5debug.
  Definition s16 := Eval vm_compute in (step_checker s15 (List.nth 15 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s16. *) (* s16 = {| [11],[10; 13; 15],[11; 27],[4],[11; 25; 26] |} *)
 
-(*  Eval vm_compute in List.nth 16 (fst c) _. *) (* EqTr 2 28 () *)
+(*  Eval vm_compute in List.nth 16 (fst c) _. *) (* EqTr 2 28 [] *)
 
  Definition s17 := Eval vm_compute in (step_checker s16 (List.nth 16 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s17. *) (* s17 = {| [11],[10; 13; 15],[28],[4],[11; 25; 26] |} *)
@@ -118,7 +118,7 @@ Section test6cvc5debug.
  Definition s18 := Eval vm_compute in (step_checker s17 (List.nth 17 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s18. *) (* s18 = {| [11],[10; 13; 15],[28],[4],[5; 29; 30] |} *)
 
-(*  Eval vm_compute in List.nth 18 (fst c) _. *) (* EqTr 5 28 () *)
+(*  Eval vm_compute in List.nth 18 (fst c) _. *) (* EqTr 5 28 [] *)
 
  Definition s19 := Eval vm_compute in (step_checker s18 (List.nth 18 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s19. *) (* s19 = {| [11],[10; 13; 15],[28],[4],[5; 29; 30],[28] |} *)
@@ -128,7 +128,7 @@ Section test6cvc5debug.
  Definition s20 := Eval vm_compute in (step_checker s19 (List.nth 19 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s20. *) (* s20 = {| [11],[10; 13; 15],[28],[4],[5; 30],[28] |} *)
 
-(*  Eval vm_compute in List.nth 20 (fst c) _. *) (* Weaken 4 4 (29%int63  *)
+(*  Eval vm_compute in List.nth 20 (fst c) _. *) (* Weaken 4 4 [29;30;5] *)
 
  Definition s21 := Eval vm_compute in (step_checker s20 (List.nth 20 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s21. *) (* s21 = {| [11],[10; 13; 15],[28],[4],[5; 29; 30],[28] |} *)
@@ -308,7 +308,7 @@ Section test6cvc5debug.
  Definition s56 := Eval vm_compute in (step_checker s55 (List.nth 55 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s56. *) (* s56 = {| [11],[10; 13; 15],[6; 9],[7; 8],[5; 28],[4; 10],[5; 7; 8; 11],[6; 10],[8; 9; 0; 36; 38],[9; 10] |} *)
 
-(*  Eval vm_compute in List.nth 56 (fst c) _. *) (* Weaken 3 3 (37%int63  *)
+(*  Eval vm_compute in List.nth 56 (fst c) _. *) (* Weaken 3 3 [37;29;8;7] *)
 
  Definition s57 := Eval vm_compute in (step_checker s56 (List.nth 56 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s57. *) (* s57 = {| [11],[10; 13; 15],[6; 9],[7; 8; 29; 37],[5; 28],[4; 10],[5; 7; 8; 11],[6; 10],[8; 9; 0; 36; 38],[9; 10] |} *)
@@ -593,7 +593,7 @@ Section test6cvc5debug.
  Definition s113 := Eval vm_compute in (step_checker s112 (List.nth 112 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s113. *) (* s113 = {| [11],[10; 13; 15],[6; 9],[3; 52],[6; 52],[48; 62; 64; 66; 68],[5; 7; 8; 11],[7; 52],[8; 9; 0; 40],[2; 28; 62; 64; 66; 68] |} *)
 
-(*  Eval vm_compute in List.nth 113 (fst c) _. *) (* Weaken 7 7 (37%int63  *)
+(*  Eval vm_compute in List.nth 113 (fst c) _. *) (* Weaken 7 7 [37;29;52;7] *)
 
  Definition s114 := Eval vm_compute in (step_checker s113 (List.nth 113 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s114. *) (* s114 = {| [11],[10; 13; 15],[6; 9],[3; 52],[6; 52],[48; 62; 64; 66; 68],[5; 7; 8; 11],[7; 29; 37; 52],[8; 9; 0; 40],[2; 28; 62; 64; 66; 68] |} *)
@@ -638,7 +638,7 @@ Section test6cvc5debug.
  Definition s122 := Eval vm_compute in (step_checker s121 (List.nth 121 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s122. *) (* s122 = {| [11],[10; 13; 15],[6; 9],[7; 36],[52; 54; 62; 64; 66; 68],[3; 29; 62; 64; 66; 68],[5; 7; 8; 11],[28; 36],[8; 9; 0; 40],[6; 36] |} *)
 
-(*  Eval vm_compute in List.nth 122 (fst c) _. *) (* Weaken 3 3 (53%int63  *)
+(*  Eval vm_compute in List.nth 122 (fst c) _. *) (* Weaken 3 3 [53;2;36;7] *)
 
  Definition s123 := Eval vm_compute in (step_checker s122 (List.nth 122 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s123. *) (* s123 = {| [11],[10; 13; 15],[6; 9],[2; 7; 36; 53],[52; 54; 62; 64; 66; 68],[3; 29; 62; 64; 66; 68],[5; 7; 8; 11],[28; 36],[8; 9; 0; 40],[6; 36] |} *)
@@ -988,7 +988,7 @@ Section test6cvc5debug.
  Definition s192 := Eval vm_compute in (step_checker s191 (List.nth 191 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s192. *) (* s192 = {| [8; 9; 0; 62; 64; 66; 68; 70; 72],[7; 52],[6; 9],[2; 7; 36; 53],[6; 52],[12; 53; 57],[5; 7; 8; 11],[8; 9; 0; 12; 62; 64; 66; 68; 70],[8; 9; 0; 10; 13; 62; 64; 66; 68; 70; 72],[13; 36; 61] |} *)
 
-(*  Eval vm_compute in List.nth 192 (fst c) _. *) (* Weaken 1 1 (62%int63  *)
+(*  Eval vm_compute in List.nth 192 (fst c) _. *) (* Weaken 1 1 [62;64;66;68;70;13;52;7] *)
 
  Definition s193 := Eval vm_compute in (step_checker s192 (List.nth 192 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s193. *) (* s193 = {| [8; 9; 0; 62; 64; 66; 68; 70; 72],[7; 13; 52; 62; 64; 66; 68; 70],[6; 9],[2; 7; 36; 53],[6; 52],[12; 53; 57],[5; 7; 8; 11],[8; 9; 0; 12; 62; 64; 66; 68; 70],[8; 9; 0; 10; 13; 62; 64; 66; 68; 70; 72],[13; 36; 61] |} *)
@@ -1038,7 +1038,7 @@ Section test6cvc5debug.
  Definition s202 := Eval vm_compute in (step_checker s201 (List.nth 201 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s202. *) (* s202 = {| [3],[7; 12],[6; 9],[2; 7; 36; 53],[8; 9; 0; 62; 64; 66; 68; 70],[12; 53; 57],[5; 7; 8; 11],[8; 9; 0; 52; 62; 64; 66; 68],[6; 12],[13; 36; 61] |} *)
 
-(*  Eval vm_compute in List.nth 202 (fst c) _. *) (* Weaken 1 1 (62%int63  *)
+(*  Eval vm_compute in List.nth 202 (fst c) _. *) (* Weaken 1 1 [62;64;66;68;53;2;12;7] *)
 
  Definition s203 := Eval vm_compute in (step_checker s202 (List.nth 202 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s203. *) (* s203 = {| [3],[2; 7; 12; 53; 62; 64; 66; 68],[6; 9],[2; 7; 36; 53],[8; 9; 0; 62; 64; 66; 68; 70],[12; 53; 57],[5; 7; 8; 11],[8; 9; 0; 52; 62; 64; 66; 68],[6; 12],[13; 36; 61] |} *)
@@ -1073,7 +1073,7 @@ Section test6cvc5debug.
  Definition s209 := Eval vm_compute in (step_checker s208 (List.nth 208 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s209. *) (* s209 = {| [2; 8; 9; 0; 62; 64; 66],[2; 7; 12; 53; 62; 64; 66; 68],[6; 9],[2; 7; 36; 53],[8; 9; 0; 62; 64; 66; 68; 70],[12; 53; 57],[5; 7; 8; 11],[8; 9; 0; 62; 64; 66; 68],[6; 12],[13; 36; 61] |} *)
 
-(*  Eval vm_compute in List.nth 209 (fst c) _. *) (* Weaken 0 0 (62%int63  *)
+(*  Eval vm_compute in List.nth 209 (fst c) _. *) (* Weaken 0 0 [62;64;66;2;1] *)
 
  Definition s210 := Eval vm_compute in (step_checker s209 (List.nth 209 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s210. *) (* s210 = {| [0],[2; 7; 12; 53; 62; 64; 66; 68],[6; 9],[2; 7; 36; 53],[8; 9; 0; 62; 64; 66; 68; 70],[12; 53; 57],[5; 7; 8; 11],[8; 9; 0; 62; 64; 66; 68],[6; 12],[13; 36; 61] |} *)
@@ -1158,7 +1158,7 @@ Section test6cvc5debug.
  Definition s226 := Eval vm_compute in (step_checker s225 (List.nth 225 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s226. *) (* s226 = {| [0; 0; 0],[2; 7; 12; 53; 62; 64; 66; 68],[6; 9],[2; 7; 36; 53],[0; 0],[12; 53; 57],[5; 7; 8; 11],[0; 0; 0],[6; 12],[13; 36; 61] |} *)
 
-(*  Eval vm_compute in List.nth 226 (fst c) _. *) (* EqTr 4 28 () *)
+(*  Eval vm_compute in List.nth 226 (fst c) _. *) (* EqTr 4 28 [] *)
 
  Definition s227 := Eval vm_compute in (step_checker s226 (List.nth 226 (fst c) (CTrue t_func t_atom t_form 0))). 
 (*  Print s227. *) (* s227 = {| [0; 0; 0],[2; 7; 12; 53; 62; 64; 66; 68],[6; 9],[2; 7; 36; 53],[28],[12; 53; 57],[5; 7; 8; 11],[0; 0; 0],[6; 12],[13; 36; 61] |} *)
