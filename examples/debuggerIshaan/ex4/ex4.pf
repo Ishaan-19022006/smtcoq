@@ -1,0 +1,5 @@
+(assume a0 (or x (not y)))
+(assume a1 (not true))
+(step t2 (cl x (not y)) :rule or :premises (a0))
+(step t3 (cl false) :rule tautology :premises (t2))
+(step t4 (cl x) :rule resolution :premises (t3 a1))
