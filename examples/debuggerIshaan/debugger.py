@@ -418,8 +418,12 @@ def parse_state_op(coq_op):
     return "(* " + var + " = " + "{| " + final_parse + " |} *)"
 
     
+'''
+Checker for flagging outputs that have [0] in them
 
-
+'''
+def check_for_zero(parsed_state_comment):
+    return "[0]" in parsed_state_comment
 
 '''
 
@@ -440,9 +444,15 @@ def run_coqc(fname, t):
     elif(t == Type.INT):
         return parse_coq_int_op(coqcop)
     elif(t == Type.STATE):
-        return parse_state_op(coqcop)
+        parsed = parse_state_op(coqcop)
+        if check_for_zero(parsed):
+            
+            parsed += "  (* FLAGGED: contains [0] *)"
+            return parsed
+        else:
+            return parse_state_op(coqcop)
     elif(t == Type.STEP):
-        return parse_Step(coqcop)
+            return parse_Step(coqcop)
 
 
 '''
