@@ -10,7 +10,7 @@ coq = subprocess.Popen(
     text=True
 )
 
-
+'''
 coq.stdin.write("Add Rec LoadPath ../../src as SMTCoq.\n"
 "Require Import SMTCoq.SMTCoq.\n"
 "Require Import Bool.\n"
@@ -29,13 +29,19 @@ coq.stdin.write("Definition nclauses := Eval vm_compute in (match trace with Cer
   "Print nclauses. (* 2 *) \n")
 coq.stdin.flush()
 
+'''
+coq.stdin.write("Defintion x := 3.\n")
+coq.stdin.flush()
+
+coq.stdin.write("Print x.\n")
+coq.stdin.flush()
 
 while True:
     line = coq.stdout.readline()
     if not line:
         break
     print("Coq :", line.strip())
-    if "int" in line:
+    if " nat " in line:
         break
     
 
