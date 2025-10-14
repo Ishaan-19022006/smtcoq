@@ -3,11 +3,12 @@ import subprocess
 # Start coqtop as a subprocess with pipes
 # Pipes allow the coq output to be captured in python 
 coq = subprocess.Popen(
-    ["coqtop"],  
+    ["coqtop", "-quiet"], 
     stdin=subprocess.PIPE,
     stdout=subprocess.PIPE,
-    stderr=subprocess.PIPE,
-    text=True
+    stderr=subprocess.STDOUT,
+    text=True,
+    bufsize=1
 )
 
 '''
@@ -30,20 +31,32 @@ coq.stdin.write("Definition nclauses := Eval vm_compute in (match trace with Cer
 coq.stdin.flush()
 
 '''
-coq.stdin.write("Defintion x := 3.\n")
-coq.stdin.flush()
-
-coq.stdin.write("Print x.\n")
-coq.stdin.flush()
-
-while True:
-    line = coq.stdout.readline()
-    if not line:
-        break
-    print("Coq :", line.strip())
-    if " nat " in line:
-        break
+def coq_command(cmd):
     
+    coq.stdin.write(cmd + "\n")
+    coq.stdin.flush()
+
+    output_lines = []
+    while True:
+        line = coq.stdout.readline()
+        if not line:
+            break
+        line = line.strip()
+        # Stop reading when Coq shows the prompt again
+        if line.startswith("Coq : ") or line.startswith("Coq <"):
+            break
+        if line:  # skip empty lines
+            output_lines.append(line)
+
+    # Return the cleaned output
+    return "\n".join(output_lines)
+
+# Test it
+#print("Definition x := 3.")
+print(coq_command("Definition x := 3."))
+
+#print("Print x.")
+print(coq_command("Print x."))
 
 
 
