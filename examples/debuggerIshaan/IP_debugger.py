@@ -96,6 +96,52 @@ def file_length(f):
     return len(f.readlines())
 
 
+
+
+'''
+
+Takes 1. file object 2. Type (Enum)
+runs coq file; parses output; comments Coq command 
+and adds commented output to file
+
+'''
+
+def run_coq_command(f, t):
+    i = file_length(f) - 2
+    coq_op = run_coqc(full_name, t)
+    replace_coql(f, i, coq_op)
+
+
+'''
+
+Takes 1. file object 2. Type (Enum)
+runs coq file; parses output; returns output as Python type
+
+'''
+def run_coq_command_return(f, t):
+    i = file_length(f) - 2
+    coq_op = run_coqc(full_name, t)
+    if(t == Type.INT):
+        uncommented_op = coq_op.strip("(* ").strip(" *)")
+        return int(uncommented_op)
+
+'''
+
+Takes 1. file object 2. string
+Adds string as a line before the last line (that closes the Coq section) of the file
+Note: reading all lines, modifying and then writing all lines. Alternately, we can move the file pointer and then write
+TODO: potential site for optimization
+
+'''
+
+def add_line(f, next_line):
+    f.seek(0)
+    lines = f.readlines()
+    lines.insert(file_length(f) - 1, next_line)
+    f.seek(0)
+    f.writelines(lines)
+    
+
 '''
 
 Code to:
@@ -106,8 +152,6 @@ Code to:
 5. Close file
 
 '''
-
-
 #Steps 1. and 2.
 i = sys.argv[1]
 base_name = os.path.basename(i)
@@ -136,49 +180,7 @@ with open(full_name, "r+") as f:
     "End " + base_name + "debug."
     )
 
-    '''
 
-    Takes 1. file object 2. Type (Enum)
-    runs coq file; parses output; comments Coq command 
-    and adds commented output to file
-
-    '''
-
-    def run_coq_command(f, t):
-        i = file_length(f) - 2
-        coq_op = run_coqc(full_name, t)
-        replace_coql(f, i, coq_op)
-    
-    
-    '''
-
-    Takes 1. file object 2. Type (Enum)
-    runs coq file; parses output; returns output as Python type
-
-    '''
-    def run_coq_command_return(f, t):
-        i = file_length(f) - 2
-        coq_op = run_coqc(full_name, t)
-        if(t == Type.INT):
-            uncommented_op = coq_op.strip("(* ").strip(" *)")
-            return int(uncommented_op)
-
-    '''
-
-    Takes 1. file object 2. string
-    Adds string as a line before the last line (that closes the Coq section) of the file
-    Note: reading all lines, modifying and then writing all lines. Alternately, we can move the file pointer and then write
-    TODO: potential site for optimization
-
-    '''
-
-    def add_line(f, next_line):
-        f.seek(0)
-        lines = f.readlines()
-        lines.insert(file_length(f) - 1, next_line)
-        f.seek(0)
-        f.writelines(lines)
-    
 
     #Step 3.
     #Run Coq commands, capture output in Coq comments
