@@ -304,7 +304,7 @@ def parse_Step(coq_op):
 
         return "(* " + final_list + " *)"
 
-
+"""  """""" """  """ """
 '''
 Takes the String
 
@@ -437,7 +437,7 @@ Runs coqc on the debug file and returns the output after parsing
 
 def run_coqc(fname, t):
     coqc = subprocess.run(['coqc', fname], text=True, capture_output=True)
-    coqcop = coqc.stdout
+    coqcop = coqc.stdout # stores output
 
     if (t == Type.BOOL):
         return parse_coq_bool_op(coqcop)
