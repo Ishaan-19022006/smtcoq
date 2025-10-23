@@ -187,7 +187,7 @@ with open(full_name, "r+") as f:
     run_coq_command(f, Type.INT)
 
     add_line(f, "\n " + " " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n")
-    
+
     run_coq_command(f, Type.INT)
 
     add_line(f, "\n" + " " + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n" )
@@ -211,3 +211,4 @@ with open(full_name, "r+") as f:
         run_coq_command(f, Type.STEP)
         add_line(f, "\n" + " " + "Definition s" + str(i + 1) + " := Eval vm_compute in (step_checker s" + str(i) + " (List.nth " + str(i) + " (fst c) (CTrue t_func t_atom t_form 0))). \n" + " " + "Print s" + str(i + 1) + ". \n")
         run_coq_command(f, Type.STATE)
+
