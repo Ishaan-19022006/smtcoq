@@ -24,6 +24,13 @@ class Type(Enum):
     STATE = 3. # Coq State
     STEP = 4 # Coq Step
 
+#Defining files (step1?)
+i = sys.argv[1]
+base_name = os.path.basename(i)
+full_name = i + "debug.v"
+smt_name = i + ".smt2"
+pf_name = i + ".pf"
+
 '''
 
 Takes 1. a string - the Coq debug file name
@@ -152,63 +159,63 @@ Code to:
 5. Close file
 
 '''
-#Steps 1. and 2.
-i = sys.argv[1]
-base_name = os.path.basename(i)
-full_name = i + "debug.v"
 
-#Make sure file is empty
-with open(full_name, "w") as f:
-    f.close()
+def main():
+    #Step 2?
+    #Make sure file is empty
+    with open(full_name, "w") as f:
+        f.close()
 
-with open(full_name, "r+") as f:
-    f.write(
-    "Add Rec LoadPath \"../../src\" as SMTCoq.\n"
-    "Require Import SMTCoq.SMTCoq.\n"
-    "Require Import Bool. \n" 
-    "Require Import Int31. \n"  
-    "Local Open Scope int31_scope.\n"
-    "\n"
-    "Section " + base_name + "debug. \n" 
+    with open(full_name, "r+") as f:
+        f.write(
+        "Add Rec LoadPath \"../../src\" as SMTCoq.\n"
+        "Require Import SMTCoq.SMTCoq.\n"
+        "Require Import Bool. \n" 
+        "Require Import Int31. \n"  
+        "Local Open Scope int31_scope.\n"
         "\n"
-        " " + "Parse_certif_verit t_i t_func t_atom t_form root used_roots trace \n"
-        " \"" + i + ".smt2\" \n"
-        " \"" + i + ".pf\". \n"
-        "\n"
-        " " + "Definition nclauses := Eval vm_compute in (match trace with Certif a _ _ => a end). (* Size of the state *)\n"
-        " " + "Print nclauses.\n"
-    "End " + base_name + "debug."
-    )
+        "Section " + base_name + "debug. \n" 
+            "\n"
+            " " + "Parse_certif_verit t_i t_func t_atom t_form root used_roots trace \n"
+            " \"" + smt_name + "\" \n"
+            " \"" + pf_name + "\". \n"
+            "\n"
+            " " + "Definition nclauses := Eval vm_compute in (match trace with Certif a _ _ => a end). (* Size of the state *)\n"
+            " " + "Print nclauses.\n"
+        "End " + base_name + "debug."
+        )
 
 
 
-    #Step 3.
-    #Run Coq commands, capture output in Coq comments
-    run_coq_command(f, Type.INT)
+        #Step 3.
+        #Run Coq commands, capture output in Coq comments
+        run_coq_command(f, Type.INT)
 
-    add_line(f, "\n " + " " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n")
+        add_line(f, "\n " + " " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n")
 
-    run_coq_command(f, Type.INT)
+        run_coq_command(f, Type.INT)
 
-    add_line(f, "\n" + " " + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n" )
+        add_line(f, "\n" + " " + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n" )
 
-    n = run_coq_command_return(f, Type.INT) #No. of steps in certificate
+        n = run_coq_command_return(f, Type.INT) #No. of steps in certificate
 
-    run_coq_command(f, Type.INT)
+        run_coq_command(f, Type.INT)
 
-    add_line(f, "\n" + " " +"Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom). \n")
+        add_line(f, "\n" + " " +"Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom). \n")
 
-    run_coq_command(f, Type.BOOL)
+        run_coq_command(f, Type.BOOL)
 
-    add_line(f, "\n" + " " + "(* States from c *) \n" + "\n" + "(* Start state *) \n")
+        add_line(f, "\n" + " " + "(* States from c *) \n" + "\n" + "(* Start state *) \n")
 
-    add_line(f, "\n" + " " + "Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). \n" + " " + " Print s0. \n")
+        add_line(f, "\n" + " " + "Definition s0 := Eval vm_compute in (add_roots (S.make nclauses) root used_roots). \n" + " " + " Print s0. \n")
 
-    run_coq_command(f, Type.STATE)
-
-    for i in range(n):
-        add_line(f, "\n" + " " +  "Eval vm_compute in List.nth " + str(i) + " (fst c) _.\n")
-        run_coq_command(f, Type.STEP)
-        add_line(f, "\n" + " " + "Definition s" + str(i + 1) + " := Eval vm_compute in (step_checker s" + str(i) + " (List.nth " + str(i) + " (fst c) (CTrue t_func t_atom t_form 0))). \n" + " " + "Print s" + str(i + 1) + ". \n")
         run_coq_command(f, Type.STATE)
 
+        for i in range(n):
+            add_line(f, "\n" + " " +  "Eval vm_compute in List.nth " + str(i) + " (fst c) _.\n")
+            run_coq_command(f, Type.STEP)
+            add_line(f, "\n" + " " + "Definition s" + str(i + 1) + " := Eval vm_compute in (step_checker s" + str(i) + " (List.nth " + str(i) + " (fst c) (CTrue t_func t_atom t_form 0))). \n" + " " + "Print s" + str(i + 1) + ". \n")
+            run_coq_command(f, Type.STATE)
+
+if __name__ == "__main__":
+    main()
