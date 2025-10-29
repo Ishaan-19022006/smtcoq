@@ -592,6 +592,7 @@ with open(full_name, "r+") as f:
     add_line(f, "\n" + " " + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n" )
 
     n = run_coq_command_return(f, Type.INT) #No. of steps in certificate
+    print(n) 
 
     run_coq_command(f, Type.INT)
 
