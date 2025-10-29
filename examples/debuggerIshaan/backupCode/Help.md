@@ -1,8 +1,13 @@
-# Contents
+# Tasks
+1. Create a Python script to automate the process of a run of the SMTCoq checker on a SMT and proof file.
+2. Use the script to run the checker on a set of benchmarks (set of SMT + proof files).
+
+## Debugger
+## Contents
 - `debugger.py` will eventually contain a Python debugger that automates the manual debugging process that must now occur.
 - The `ex1` directory contains a very simple example that demonstrates how the SMTCoq checker works, and how the current debugging process works.
 
-## Example
+### Example
 The `ex1` folder contains all the files needed to run a full example on the
 SMT solver-SMTCoq checker pipeline.
 
@@ -350,7 +355,7 @@ running this step of the certificate:
 ```
 This is followed by a command that tells us what the next step is.
 
-## Proof Certficates
+### Proof Certficates
 The details of the proof certificates themselves doesn't matter too much - you need to write a debugger given some particular pattern of files. 
 This pattern is 
 mostly described above. It's okay if you don't understand what the file
@@ -379,3 +384,86 @@ the certificate derives the empty clause `(cl)`.
 longer proof with many more steps, while still proving the same thing.
 When things go wrong, we are left with 100s or 1000s of steps, and we need
 to spot the one step that has an issue. That's what the debugger above does.
+
+## Benchmarks
+The expected behavior of the SMTCoq checker - given a proof certificate 
+file (`.pf` file) that correctly justifies the assertions in an SMT file 
+(`.smt` file) - is that it returns `true`.
+
+For example, `examples/debuggerIshaan/test1` contains an SMT file (`test1.smt2`) 
+and a proof file (`test1/pf`). The `Coq` file (`test1.v`) calls the SMTCoq checker
+on these two files. From the `test1` directory, if run `coqc test1.v`, you can 
+see that the checker is successful:
+```
+     = true
+     : bool
+```
+
+We actually care more about file pairs for which the checker returns `false`. The 
+SMTCoq checker is not fully implemented so it might fail on some pairs of files that
+we actually expect it to pass on. On such cases, we want to be able to use the Python
+debugger to figure out which part of the certificate the checker fails on so we can 
+fix it. So the task here is:
+1. Run the SMTCoq checker on a set of benchmarks (SMT and proof certificate file pairs).
+2. Ignore the benchmarks that pass, ie, SMTCoq returns `true` for them. Focus instead,
+on the benchmarks for which SMTCoq returns `false.
+3. Run the Python debugger on these files and figure our where they fail. During this task, 
+we'll improve on our definition of what it means for a step in a certificate to fail.
+Currently, we're just looking for when there is a `[0]` in SMTCoq's state, which is not 
+a very refined definition of when things go wrong (sometimes this happens when nothing
+has gone wrong).
+
+To make things more complicated, the checker is probably going to fail even before it
+can return `true` or `false` on the benchmarks that we try. It's going to give a few errors
+because it can't parse the benchmark files. Once we get the specific errors, I can edit 
+the parser so that we can eventually get to a place where the checker only returns `true`
+or `false` on any of the benchmarks. Then we'll have to go through the above 3 steps.
+
+We'll start with 208 benchmarks (file pairs) that have been uploaded here: https://drive.google.com/file/d/1nX-GyrHnxsvGRv2EONOb1p8dZeqPuFcJ/view?usp=sharing
+These file pairs are arbitrarily dispersed into folders that are all under the `QF_UF` folder in this zip file.
+Each pair has the following format:
+- `<basename>.smt2` is the SMT file
+- `<basename>.smt2.proof` is the proof file
+
+For example, `QF_UF/SEQ` contains `SEQ038size7.smt2` and `SEQ038_size7.smt2.proof`. So `<basename>` here 
+is `SEQ038size7`.
+
+### Step 1
+To run step 1, we need to create a corresponding Coq file (`.v`) file that imports SMTCoq and calls `Verit_Checker`
+on the SMT file and the proof file. For the same two files in the example above, if we wanted to create a
+Coq file - say `SEQ038_size7.v` in the same directory that contains `QF_UF`, then it would contain this code
+to call the SMTCoq checker:
+```
+Add Rec LoadPath "../../../src" as SMTCoq.
+Require Import SMTCoq.SMTCoq.
+Require Import Bool.
+Section Benchmark.
+  Verit_Checker "QF_UF/SEQ/SEQ038size7.smt2" "QF_UF/SEQ/SEQ038_size7.smt2.proof".
+End Benchmark.
+```
+Note that the `"../../../src" part needs to be adjusted to correctly point to your SMTCoq's `src` directory
+from the place in which `coqc` is being called. Clarify if this is confusing.
+
+To complete step 1, you need to create such a `.v` file for every pair of SMT and proof files in the benchmark directory.
+It might be best to create all these files in the same directory as `QF_UF` as the example above because we don't
+want to pollute the benchmark's file structure with new files.
+
+**Don't do this manually!** Use either Python or bash scripts to automate this process.
+
+### Step 2
+Once all the `.v` files have been generated, write another script to run `coqc` on all the `.v` files.
+Each one should ideally return a `true/false` value but I might have to make changes to the parser before
+we reach that point.
+
+### Step 3
+Once we get to a point where we can automatically run the SMTCoq checker on all the benchmark pairs and 
+get a `true/false` value, we can filter out the ones that return `false`. These are the ones we 
+want to run the Python debugger on (ideally we have fixed the bottleneck by this point so that
+each benchmark pair doesn't take 10-20 minutes to run!).
+
+We can now talk about what it means to find the source of the error in these benchmarks and modify the
+script to find the thing that we care about.
+
+I can then use that information to fix the SMTCoq checker and ultimately have SMTCoq only return
+`true` for all the benchmarks. Once that's done I will actually test it on a truly large benchmark set
+(1000s of file pairs).
