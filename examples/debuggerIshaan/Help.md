@@ -386,6 +386,23 @@ When things go wrong, we are left with 100s or 1000s of steps, and we need
 to spot the one step that has an issue. That's what the debugger above does.
 
 ## Benchmarks
+
+### Thesis Benchmarks
+Once the debugger has been tested on small examples such as `ex1`, `ex2`, etc. we can
+run it on some real world problems that it was built for in the first place. 
+`test6cvc` abd `test8cvc5` are two such examples, but the ones that this debugger 
+could really help with are `thesistest1` to `thesistest7`. This new SMTCoq checker was tested on 138 benchmarks and it passed 
+on all but 7 of them. These are those 7 benchmarks for which the checker returns 
+`false`: if you `cd` into the directory for `thesistestn` and run `coqc thesistestn.v`,
+you will see that it returns `false`. We need to use the debug file to figure out 
+which part of the certificate checking SMTCoq fails at. These can help us 
+better refine our debugger script so that it can find the exact source of failure 
+in a large certificate.
+
+Once we successfully use the script on these 7 tests, we can move on to a 
+much larger set of benchmarks, as detailed below.
+
+### Larger Benchmarks
 The expected behavior of the SMTCoq checker - given a proof certificate 
 file (`.pf` file) that correctly justifies the assertions in an SMT file 
 (`.smt` file) - is that it returns `true`.
