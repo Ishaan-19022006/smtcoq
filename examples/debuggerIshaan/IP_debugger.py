@@ -17,13 +17,6 @@ import subprocess
 from enum import Enum
 import re
 
-#Enum type to distinguish Coq output types
-class Type(Enum):
-    BOOL = 1. # Coq Bool
-    INT = 2. # Coq Int
-    STATE = 3. # Coq State
-    STEP = 4 # Coq Step
-
 #Defining files (step1?)
 i = sys.argv[1]
 base_name = os.path.basename(i)
@@ -165,9 +158,12 @@ Runs coqc on the debug file and returns the output
 (no parse version of run_coqc())
 '''
 def run_coqc_file(fname):
+    print("fname: " + fname)
     coqc = subprocess.run(['coqc', fname], text=True, capture_output=True)
+    #filecontents = subprocess.run(['cat', fname], text=True, capture_output=True)
     coqcop = coqc.stdout #what should be parsed 
     print("output:\n" + coqcop)
+    #print("file contents:\n" + filecontents.stdout)
 '''
 
 Code to:
@@ -185,7 +181,7 @@ def main():
     with open(full_name, "w") as f:
         f.close()
 
-    with open(full_name, "r+") as f:
+    with open(full_name, "a") as f:
         f.write(
         "Add Rec LoadPath \"../../src\" as SMTCoq.\n"
         "Require Import SMTCoq.SMTCoq.\n"
@@ -201,28 +197,27 @@ def main():
             "\n"
             " " + "Definition nclauses := Eval vm_compute in (match trace with Certif a _ _ => a end). (* Size of the state *)\n"
             " " + "Print nclauses.\n"
-        "End " + base_name + "debug."
         )
 
 
 
         
         #add lines. do not run coq, only after you've gotten to the step w certifactes..
-        
+        filecontents = subprocess.run(['cat', full_name], text=True, capture_output=True)
+        print("file contents after f.write:\n" + filecontents.stdout)
+    
         #run_coq_command(f, Type.INT)
 
-        add_line(f, "\n " + " " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n")
-
+        #add_line(f, "\n " + " " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n" + "\n" + " " + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n")
+        f.write("\n " + " " + "Definition c := Eval vm_compute in (match trace with Certif _ a _ => a end). (* Certificate *)\n" + " " + "Definition conf := Eval vm_compute in (match trace with Certif _ _ a => a end). (* Look here in the state for the empty clause*)\n" + " " + "Print conf.\n" + "\n" + " " + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n")
         #run_coq_command(f, Type.INT)
-
-        add_line(f, "\n" + " " + "Eval vm_compute in List.length (fst c). (* No. of steps in certificate *) \n" )
-        
-
-        run_coqc_file(full_name)
+        f.write("End " + base_name + "debug.")
+        f.close()
+    run_coqc_file(full_name)
         #n = run_coq_command_return(f, Type.INT) #No. of steps in certificate
         #print(n)
 
-        '''
+    '''
         run_coq_command(f, Type.INT)
 
         add_line(f, "\n" + " " +"Eval vm_compute in (Form.check_form t_form && Atom.check_atom t_atom && Atom.wt t_i t_func t_atom). \n")
@@ -240,7 +235,7 @@ def main():
             run_coq_command(f, Type.STEP)
             add_line(f, "\n" + " " + "Definition s" + str(i + 1) + " := Eval vm_compute in (step_checker s" + str(i) + " (List.nth " + str(i) + " (fst c) (CTrue t_func t_atom t_form 0))). \n" + " " + "Print s" + str(i + 1) + ". \n")
             run_coq_command(f, Type.STATE)
-        '''
+    '''
 
 if __name__ == "__main__":
     main()
