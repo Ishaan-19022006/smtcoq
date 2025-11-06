@@ -1,4 +1,4 @@
-./examples/debuggerIshaan/QF_UF/.*
+/examples/debuggerIshaan/QF_UF/.*
 *.cmi
 *.cmx
 *.o
