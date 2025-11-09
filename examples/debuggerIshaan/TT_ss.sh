@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-# Purpose: Recursively process all .smt2 + .smt2.proof pairs inside QF_UF
+# Purpose: Recursively process all .smt2 + .pf pairs inside Thesis_Tests
 
 
-ROOT_DIR="/Users/ishaankumar1902/Desktop/smtcoq/examples/debuggerIshaan/QF_UF"
+ROOT_DIR="/Users/ishaankumar1902/Desktop/smtcoq/examples/debuggerIshaan/Thesis_Tests"
 
 
-PYTHON_SCRIPT="/Users/ishaankumar1902/Desktop/smtcoq/examples/debuggerIshaan/ss_debugger.py"
+PYTHON_SCRIPT="/Users/ishaankumar1902/Desktop/smtcoq/examples/debuggerIshaan/TT_debugger.py"
 
 echo "Starting recursive processing from: $ROOT_DIR"
 echo "Using Python script: $PYTHON_SCRIPT"
@@ -18,7 +18,7 @@ find "$ROOT_DIR" -type f -name "*.smt2" | while IFS= read -r smt2_file; do # Fin
   
   dir=$(dirname "$smt2_file")                     # directory of the .smt2 file
   filename=$(basename "$smt2_file")                 # get the filename
-  proof_file="${smt2_file}.proof"                   # expected proof filename
+  proof_file="${dir}/${filename/.smt2/.pf}"                 # expected proof filename
   base_no_dot="${filename/.smt2/smt2}"              # base name without .smt2 extension
   output_file="${dir}/${base_no_dot}debug.v"
 

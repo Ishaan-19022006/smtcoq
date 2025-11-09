@@ -1,4 +1,4 @@
-/examples/debuggerIshaan/QF_UF/.*
+/examples/debuggerIshaan/QF_UF/
 *.cmi
 *.cmx
 *.o
@@ -8,3 +8,20 @@
 *.vos
 *.vok
 *.aux
+*.DS_Store
+*.cache
+*.cmxa
+*.cmxs
+/src/Makefile.conf
+/3rdparty/alt-ergo/smtlib2_lex.ml
+/3rdparty/alt-ergo/smtlib2_parse.ml
+/3rdparty/alt-ergo/smtlib2_parse.mli
+/src/g_smtcoq.ml
+/src/smtcoq_plugin.a
+/src/smtlib2/sExprLexer.ml
+/src/smtlib2/sExprParser.ml
+/src/smtlib2/sExprParser.mli
+/src/verit/veritLexer.ml
+/src/verit/veritParser.ml
+/src/verit/veritParser.ml
+/src/verit/veritParser.mli
