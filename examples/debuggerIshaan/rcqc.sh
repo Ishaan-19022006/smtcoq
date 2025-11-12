@@ -1,33 +1,26 @@
 #!/bin/zsh
 
-# Purpose: Recursively process all .smt2 + .smt2.proof pairs inside QF_UF
-
+# Purpose: Recursively find and compile all .debug.v files with coqc
 
 ROOT_DIR="/Users/ishaankumar1902/Desktop/smtcoq/examples/debuggerIshaan/QF_UF"
+LOG_FILE="/Users/ishaankumar1902/Desktop/smtcoq/examples/debuggerIshaan/coqc_errors.log"
 
-
-PYTHON_SCRIPT="/Users/ishaankumar1902/Desktop/smtcoq/examples/debuggerIshaan/ss_debugger.py"
-
-echo "Starting recursive processing from: $ROOT_DIR"
-echo "Using Python script: $PYTHON_SCRIPT"
+echo "Starting coqc compilation from: $ROOT_DIR"
 echo
 
-# Recursively find all .smt2 files
-find "$ROOT_DIR" -type f -name "*.smt2" | while IFS= read -r smt2_file; do # Finding all .smt2 files in the root directory, 
-# IFC= read -r to handle spaces in filenames and read entire filename into 1 variable 
+echo "" > "$LOG_FILE" # Clear previous log file
+# Recursively find all .debug.v files
+find "$ROOT_DIR" -type f -name "*debug.v" | while IFS= read -r debug_file; do
+  rel_path="${debug_file#$(pwd)/}" # Get relative path for better logging
   
-  dir=$(dirname "$smt2_file")                     # directory of the .smt2 file
-  filename=$(basename "$smt2_file")                 # get the filename
-  proof_file="${smt2_file}.proof"                   # expected proof filename
-  base_no_dot="${filename/.smt2/smt2}"              # base name without .smt2 extension
-  output_file="${dir}/${base_no_dot}debug.v"
-
-  # Check if proof file exists
-  if [ -f "$proof_file" ]; then
-
-    # Run the Python script on the pair
-    python3 "$PYTHON_SCRIPT" "$smt2_file" "$proof_file" "$output_file"
-    
-
+  # Run coqc on the file
+  if coqc "$rel_path" >> /dev/null 2>> "$LOG_FILE"; then # Redirect stdout to /dev/null and stderr to log file
+    echo "Success: $rel_path"
+  else
+    echo "Error: $rel_path"
+    echo "File: $rel_path" >> "$LOG_FILE"
   fi
+
+  echo "------------------------------------"
 done
+

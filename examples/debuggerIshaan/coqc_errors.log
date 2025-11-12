@@ -1,0 +1,1025 @@
+
+File "./QF_UF/QG-classification/loops6/gensys_icl064smt2debug.v", line 5, characters 4-128:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/gensys_icl064smt2debug.v
+File "./QF_UF/QG-classification/loops6/iso_icl083smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/iso_icl083smt2debug.v
+File "./QF_UF/QG-classification/loops6/gensys_brn089smt2debug.v", line 5, characters 4-128:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/gensys_brn089smt2debug.v
+File "./QF_UF/QG-classification/loops6/iso_icl071smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/iso_icl071smt2debug.v
+File "./QF_UF/QG-classification/loops6/iso_brn033smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/iso_brn033smt2debug.v
+File "./QF_UF/QG-classification/loops6/iso_icl038smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/iso_icl038smt2debug.v
+File "./QF_UF/QG-classification/loops6/iso_brn028smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/iso_brn028smt2debug.v
+File "./QF_UF/QG-classification/loops6/gensys_icl099smt2debug.v", line 5, characters 4-128:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/gensys_icl099smt2debug.v
+File "./QF_UF/QG-classification/loops6/iso_icl082smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/iso_icl082smt2debug.v
+File "./QF_UF/QG-classification/loops6/iso_brn005smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/iso_brn005smt2debug.v
+File "./QF_UF/QG-classification/loops6/dead_dnd016smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/dead_dnd016smt2debug.v
+File "./QF_UF/QG-classification/loops6/gensys_icl055smt2debug.v", line 5, characters 4-128:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/gensys_icl055smt2debug.v
+File "./QF_UF/QG-classification/loops6/gensys_icl044smt2debug.v", line 5, characters 4-128:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/gensys_icl044smt2debug.v
+File "./QF_UF/QG-classification/loops6/gensys_icl100smt2debug.v", line 5, characters 4-128:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/gensys_icl100smt2debug.v
+File "./QF_UF/QG-classification/loops6/gensys_icl084smt2debug.v", line 5, characters 4-128:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/gensys_icl084smt2debug.v
+File "./QF_UF/QG-classification/loops6/gensys_icl019smt2debug.v", line 5, characters 4-128:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/loops6/gensys_icl019smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl839smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl839smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl774smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl774smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl016smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl016smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl042smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl042smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl720smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl720smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl160smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl160smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl075smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl075smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn235smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn235smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl906smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl906smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl813smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl813smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn420smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn420smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl288smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl288smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl870smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl870smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn261smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn261smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn1126smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn1126smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl515smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl515smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl463smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl463smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl336smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl336smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl692smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl692smt2debug.v
+File "./QF_UF/QG-classification/qg5/dead_dnd031smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/dead_dnd031smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1106smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1106smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1131smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1131smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn307smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn307smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl599smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl599smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1153smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1153smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl969smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl969smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl865smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl865smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl1255smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl1255smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn1231smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn1231smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn023smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn023smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1223smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1223smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn1058smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn1058smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn1212smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn1212smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl308smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl308smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl248smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl248smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl249smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl249smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl887smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl887smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl070smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl070smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl432smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl432smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl679smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl679smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1219smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1219smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl935smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl935smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl498smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl498smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn507smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn507smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn425smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn425smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl335smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl335smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn1086smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn1086smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl636smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl636smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn484smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn484smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl050smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl050smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl005smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl005smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn869smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn869smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl1051smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl1051smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn1097smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn1097smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn606smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn606smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl159smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl159smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl922smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl922smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl1265smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl1265smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1009smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1009smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn1092smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn1092smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl582smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl582smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl063smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl063smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl123smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl123smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl972smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl972smt2debug.v
+File "./QF_UF/QG-classification/qg5/dead_dnd036smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/dead_dnd036smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl866smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl866smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl832smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl832smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn223smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn223smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl911smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl911smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl080smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl080smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl561smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl561smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl374smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl374smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl353smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl353smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl547smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl547smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl330smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl330smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn411smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn411smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl954smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl954smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl538smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl538smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl132smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl132smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl010smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl010smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl379smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl379smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl238smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl238smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl150smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl150smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl726smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl726smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl487smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl487smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl949smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl949smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn180smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn180smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl1236smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl1236smt2debug.v
+File "./QF_UF/QG-classification/qg5/dead_dnd002smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/dead_dnd002smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn998smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn998smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl783smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl783smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn009smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn009smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl970smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl970smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl143smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl143smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl142smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl142smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl760smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl760smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn750smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn750smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1251smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1251smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl653smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl653smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl896smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl896smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl713smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl713smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl631smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl631smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl874smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl874smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn658smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn658smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl842smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl842smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl178smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl178smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl986smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl986smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl509smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl509smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn1104smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn1104smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl075smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl075smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn114smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn114smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1280smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1280smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn1279smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn1279smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl1097smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl1097smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl576smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl576smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl825smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl825smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl183smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl183smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl096smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl096smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn317smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn317smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn749smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn749smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl964smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl964smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl299smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl299smt2debug.v
+File "./QF_UF/QG-classification/qg5/dead_dnd007smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/dead_dnd007smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1259smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1259smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1046smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1046smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl473smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl473smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn900smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn900smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl204smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl204smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl505smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl505smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl218smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl218smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl112smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl112smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl468smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl468smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl036smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl036smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl115smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl115smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl583smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl583smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn1047smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn1047smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn588smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn588smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl416smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl416smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl748smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl748smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl944smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl944smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl945smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl945smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl823smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl823smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl184smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl184smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl815smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl815smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl271smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl271smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_brn942smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_brn942smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl353smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl353smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl212smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl212smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl651smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl651smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl539smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl539smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn1103smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn1103smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl220smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl220smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl217smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl217smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl221smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl221smt2debug.v
+File "./QF_UF/QG-classification/qg5/dead_dnd041smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/dead_dnd041smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl904smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl904smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1055smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1055smt2debug.v
+File "./QF_UF/QG-classification/qg5/iso_icl1217smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/iso_icl1217smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl891smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl891smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl600smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl600smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1261smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1261smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1270smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1270smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_brn526smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_brn526smt2debug.v
+File "./QF_UF/QG-classification/qg5/dead_dnd032smt2debug.v", line 5, characters 4-118:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/dead_dnd032smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl1044smt2debug.v", line 5, characters 4-124:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl1044smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl190smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl190smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl312smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl312smt2debug.v
+File "./QF_UF/QG-classification/qg5/gensys_icl658smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg5/gensys_icl658smt2debug.v
+File "./QF_UF/QG-classification/qg7/iso_icl002smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg7/iso_icl002smt2debug.v
+File "./QF_UF/QG-classification/qg7/iso_brn004smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg7/iso_brn004smt2debug.v
+File "./QF_UF/QG-classification/qg7/iso_brn_sk036smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg7/iso_brn_sk036smt2debug.v
+File "./QF_UF/QG-classification/qg7/iso_brn023smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg7/iso_brn023smt2debug.v
+File "./QF_UF/QG-classification/qg7/iso_icl_repgen_sk006smt2debug.v", line 5, characters 4-136:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg7/iso_icl_repgen_sk006smt2debug.v
+File "./QF_UF/QG-classification/qg7/iso_icl_sk002smt2debug.v", line 5, characters 4-122:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg7/iso_icl_sk002smt2debug.v
+File "./QF_UF/QG-classification/qg6/iso_icl012smt2debug.v", line 5, characters 4-116:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/QG-classification/qg6/iso_icl012smt2debug.v
+File "./QF_UF/SEQ/SEQ038_size7smt2debug.v", line 5, characters 4-84:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/SEQ/SEQ038_size7smt2debug.v
+     = true
+     : bool
+Error:
+Invalid character '.' in identifier "QF_UF_brp.5.prop1_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_brp.5.prop1_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_elevator.3.prop1_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_elevator.3.prop1_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_elevator.2.prop1_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_elevator.2.prop1_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_pouring.2.prop1_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_pouring.2.prop1_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_lifts.3.prop1_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_lifts.3.prop1_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_brp2.2.prop3_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_brp2.2.prop3_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_pgm_protocol.4.prop6_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_pgm_protocol.4.prop6_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_brp2.4.prop2_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_brp2.4.prop2_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_needham.1.prop4_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_needham.1.prop4_ab_reg_maxsmt2debug.v
+File "./QF_UF/2018-Goel-hwbench/QF_UF_counter_v_ab_reg_maxsmt2debug.v", line 5, characters 4-140:
+Error: Invalid character '$' in identifier "Smt_sort_utt$4".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_counter_v_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_brp2.3.prop3_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_brp2.3.prop3_ab_reg_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_resistance.1.prop2_ab_cti_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_resistance.1.prop2_ab_cti_maxsmt2debug.v
+Error:
+Invalid character '.' in identifier "QF_UF_iprotocol.7.prop1_ab_reg_maxsmt2debug".
+
+File: QF_UF/2018-Goel-hwbench/QF_UF_iprotocol.7.prop1_ab_reg_maxsmt2debug.v
+File "./QF_UF/NEQ/NEQ027_size8smt2debug.v", line 5, characters 4-84:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/NEQ/NEQ027_size8smt2debug.v
+File "./QF_UF/NEQ/NEQ033_size5smt2debug.v", line 5, characters 4-84:
+Error: Verit.import_trace: VeritParser.Error
+Position: Line 1 Position 19
+
+File: QF_UF/NEQ/NEQ033_size5smt2debug.v
