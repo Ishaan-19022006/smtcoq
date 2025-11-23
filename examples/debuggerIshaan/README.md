@@ -1,9 +1,11 @@
 # Contents
 - `debugger.py` contains a Python debugger that automates the manual debugging process that must now occur.
+- `create_checker.py` contains a script to create the checker files for every pair of smt2 and pf files 
+- `debug_shell.sh` contains a shell script that implements `create_checker.py` to create the checker file, runs `coqc` on it , and then implements `debugger.py` to create the debug file. 
 - The `ex1` directory contains a very simple example that demonstrates how the SMTCoq checker works, and how the current debugging process works.
 
 # Usage
-- To use `debugger.py`, you must first have an existing `.smt2` file and an existing `.pf` file with the same name. 
+- To use `debug_shell.sh`, you must first have an existing `.smt2` file and an existing `.pf` file with the same name. 
 - For example, if the name of the `.smt2` file is `foo.smt2`, then the `.pf` will be `foo.pf`.
 - Please make sure that the names are exactly the same since the filenames are key sensitive. 
 - Add these files to the `debuggerIshaan` directory.
@@ -11,13 +13,36 @@
 ```
 cd smtcoq/examples/debuggerIshaan
 ``` 
-- Once your directory has been changed simply run the `debugger.py` script and add the name of the `.smt2`/`.pf` (for example `foo`) file by running 
+- As of right now, users must manually select the directory in which their smt2 and pf files reside in
+- For example, if you a user wishes to run `debug_shell.sh` on the `ex1` directory, they must change 3 things.
+- 1. In line 15 of `debug_shell.sh`, set the variable `ROOT_DIR` to the name of the folder in which your smt2 file and pf file are in. After the `=`, create a string and first enter `./` so that the relative path can be set. 
+
 ```
-python3 debugger.py foo
+ROOT_DIR="./ex1"
+```
+- 2. In line 24 of `create_checker.py`, change the `index` variable by setting the name of the directory inside the `path.find()` arguement. 
+
+```
+index = path.find("ex1")
 ```
 
+- 3. In line 529 of `debugger.py' change the `index` variable by setting the name of the directory inside the `path.find()` arguement. 
+
+```
+index = path.find("ex1")
+```
+
+# Execution
+- In order to execute this script, first make sure that you are in the debuggerIshaan directory
+- Once you are in the debuggerIshaan directory simply run the following in the terminal
+
+```
+sh debug_shell.sh
+```
 # Results
-- Running this script will automatically generate a `.v` file in the `debuggerIshaan` directory by the name of `foodebug.v` 
+- Running this script will automatically generate a checker file in the directory where your smt2 and pf files are by the name of `foosmt2.v` 
+- Once it has created `foosmt2.v`, it will run coqc on `foosmt2.v`
+- If coqc returns false, then it will generate the debug file by the name of `foosmt2debug.v`
 - This will contain an automated debug file with parsed out coq comments which look like this 
 ```
 (*  Print nclauses. *) (* 2 *)

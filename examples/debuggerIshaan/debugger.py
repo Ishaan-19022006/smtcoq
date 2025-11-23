@@ -511,8 +511,44 @@ Code to:
 
 #Steps 1. and 2.
 i = sys.argv[1]
-base_name = os.path.basename(i)
-full_name = i + "debug.v"
+proof_file = sys.argv[2] # Proof file
+full_name = sys.argv[3]  # Output filename (passed in from shell script)
+
+
+
+'''
+
+Function that finds the relative path of the required directory 
+
+
+'''
+
+
+def find_path(path):
+    # Find where the directory specified in the argument begins
+    index = path.find("ex1")
+    if index != -1:
+        return path[index:]  # keep everything from the directory onward
+    else:
+        return os.path.basename(path)  # fallback to just filename if not found
+
+i_rel = find_path(i)
+proof_rel = find_path(proof_file)
+
+'''
+
+Function that correctly formats the section name from the full file path
+
+'''
+
+def coq_section_name(filename):
+    base = os.path.basename(filename)        # thesistest1smt2debug.v
+    name = os.path.splitext(base)[0]         # thesistest1smt2debug
+    # Coq identifiers cannot contain hyphens, spaces, or dots
+    name = re.sub(r'[^A-Za-z0-9_]', '_', name)
+    return name
+
+section_name = coq_section_name(full_name)
 
 #Make sure file is empty
 with open(full_name, "w") as f:
@@ -526,15 +562,15 @@ with open(full_name, "r+") as f:
     "Require Import Int31. \n"  
     "Local Open Scope int31_scope.\n"
     "\n"
-    "Section " + base_name + "debug. \n" 
+    "Section " + section_name + ".\n" 
         "\n"
         " " + "Parse_certif_verit t_i t_func t_atom t_form root used_roots trace \n"
-        " \"" + i + ".smt2\" \n"
-        " \"" + i + ".pf\". \n"
+        " \"" + i_rel + "\" \n"
+        " \"" + proof_rel + "\". \n"
         "\n"
         " " + "Definition nclauses := Eval vm_compute in (match trace with Certif a _ _ => a end). (* Size of the state *)\n"
         " " + "Print nclauses.\n"
-    "End " + base_name + "debug."
+    "End " + section_name + "."
     )
 
     '''

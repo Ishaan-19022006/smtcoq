@@ -8,7 +8,7 @@ Goal: Generate the entire debug file and then run the parsing functions on it.
 '''
 
 #Import parse functions
-from parse_functions import *
+from examples.debuggerIshaan.backupCode.parse_functions import *
 
 #Get first command line argument into a string variable
 import sys 

@@ -1,6 +1,6 @@
-Add Rec LoadPath "/Users/ishaankumar1902/Desktop/smtcoq/examples/debuggerIshaan/ex1" as SMTCoq.
+Add Rec LoadPath "../../src" as SMTCoq.
 Require Import SMTCoq.SMTCoq.
 Require Import Bool.
 Section Benchmark.
-  Verit_Checker "ex1.smt2" "ex1.pf".
+  Verit_Checker "ex1/ex1.smt2" "ex1/ex1.pf".
 End Benchmark.
